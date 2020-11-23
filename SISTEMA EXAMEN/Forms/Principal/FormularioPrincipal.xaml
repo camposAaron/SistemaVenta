@@ -1,0 +1,99 @@
+﻿<Window x:Class="SISTEMA_EXAMEN.Forms.Principal.FormularioPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SISTEMA_EXAMEN.Forms.Principal"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+     
+        mc:Ignorable="d"
+        Title="FormularioPrincipal" Height="650" Width="1200" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <DockPanel.Resources>
+                <Style TargetType="Menu">
+                    <Style.Setters>
+                        <Setter Property="FontFamily" Value="Verdana"></Setter>
+                        <Setter Property="FontSize" Value="14"></Setter>
+                        <Setter Property="Foreground" Value="#222"></Setter>
+                        <Setter Property="Background" Value="LightBlue"></Setter>
+                    </Style.Setters>
+                </Style>
+            </DockPanel.Resources>
+            <!--Menu-->
+            <Menu Grid.Row="0" VerticalAlignment="Center" DockPanel.Dock="Top">
+
+                <!--Sistema-->
+                <MenuItem Header="Sistema" Icon="{materialDesign:PackIcon Kind=Tools}">
+                    <MenuItem Header="Cambiar Contraseña" Icon="{materialDesign:PackIcon Kind=KeyChange}"></MenuItem>
+                    <MenuItem Header="Backup" Icon="{materialDesign:PackIcon Kind=Reload}" ></MenuItem>
+                    <MenuItem Header="Cerrar Sesion" Icon="{materialDesign:PackIcon Kind=ExitToApp}"></MenuItem>
+                </MenuItem>
+
+
+                <!--Ventas-->
+                <MenuItem Header="Ventas">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ArrowUpBoldBox" materialDesign:ThemeAssist.Theme="Light"></materialDesign:PackIcon>
+                    </MenuItem.Icon>
+
+                    <MenuItem Header="_Nueva Venta" Icon="{materialDesign:PackIcon Kind=NewspaperPlus}" Click="MenuItemNuevaVenta_Click"></MenuItem>
+                    <MenuItem Header="_Ver Ventas" Icon="{materialDesign:PackIcon Kind=Eye}"></MenuItem>
+                </MenuItem>
+
+                <!--Compras-->
+                <MenuItem Header="Compras" Icon="{materialDesign:PackIcon Kind=Shopping}">
+
+                    <MenuItem Header="_Nueva Compra" Icon="{materialDesign:PackIcon Kind=NewspaperPlus}"></MenuItem>
+                    <MenuItem Header="_Nueva Devolucion" Icon="{materialDesign:PackIcon Kind=NewspaperPlus}"></MenuItem>
+                    <MenuItem Header="_Ver Compras" Icon="{materialDesign:PackIcon Kind=Eye}"></MenuItem>
+                    <MenuItem Header="_Ver Devoluciones" Icon="{materialDesign:PackIcon Kind=Eye}"></MenuItem>
+                </MenuItem>
+
+                <!--Productos-->
+                <MenuItem Header="Productos" Click="MenuItemProducto_Click" Icon="{materialDesign:PackIcon Kind=BoxCutter}"></MenuItem>
+
+                <MenuItem Header="Clientes" Icon="{materialDesign:PackIcon Kind=BoxCutter}"></MenuItem>
+                <MenuItem Header="Empleados" Icon="{materialDesign:PackIcon Kind=BagPersonal}"></MenuItem>
+                <MenuItem Header="Reportes" Icon="{materialDesign:PackIcon Kind=FileReport}"></MenuItem>
+
+            </Menu>
+            <!--Fin Menu-->
+            <Grid x:Name="Container" DockPanel.Dock="Bottom"></Grid>
+        </DockPanel>
+
+        <!--Panel Informacion de usuario-->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5" Background="#ADD8E6">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Style.Setters>
+                        <Setter Property="FontFamily" Value="Arial"></Setter>
+                        <Setter Property="FontSize" Value="14"></Setter>
+                        <Setter Property="Foreground" Value="#444"></Setter>
+                        <Setter Property="Width" Value="120"></Setter>
+                    </Style.Setters>
+                </Style>
+            </StackPanel.Resources>
+
+            <TextBlock Name="txtNombre"  Text="Nombre Usuario"></TextBlock>
+            <Separator Style="{StaticResource MaterialDesignSeparator}" Background="Black" Width="10" Height="10" ></Separator>
+            <TextBlock Name="txtRole" Text="Rol de usuario"></TextBlock>
+            <Separator Style="{StaticResource MaterialDesignSeparator}" Background="Black" Width="10" Height="10" ></Separator>
+            <TextBlock Name="txtHoras" Text="Hora"></TextBlock>
+        </StackPanel>
+    </Grid>
+
+
+
+</Window>
