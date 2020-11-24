@@ -78,5 +78,35 @@ namespace Domain.Models.Ventas
             return message;
         }
 
+        public List<VentaModel> GetAll()
+        {
+            var detVentas = genericRepository.GetAll();
+            lstVentas = new List<VentaModel>();
+
+            foreach (DataRow item in detVentas.Rows)
+            {
+                lstVentas.Add(new VentaModel
+                {
+                    IdVenta = Convert.ToInt32(item[0]),
+                    FechaVenta = Convert.ToDateTime(item[1]),
+                    IdCliente =Convert.ToInt32( item[2].ToString()),
+                    TotalVendido = Convert.ToDouble(item[3]),
+                 
+
+                });
+
+
+            }
+
+            return lstVentas;
+
+        }
+
+
+        public VentaModel FindLast()
+        {
+            return GetAll().Last();
+        }
+
     }
 }

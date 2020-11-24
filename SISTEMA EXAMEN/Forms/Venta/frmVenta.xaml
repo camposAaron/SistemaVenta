@@ -16,7 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
 
         <!--Buscar side-->
@@ -27,9 +27,25 @@
 
 
 
-        <!--data grid productos-->
-        <DataGrid x:Name="datagridProductos"  Grid.Row="1" Grid.Column="0" AutoGenerateColumns="True" IsReadOnly="True" >
 
+
+        <!--data grid productos-->
+        <DataGrid x:Name="datagridProductos" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo_producto}" IsReadOnly="true"></DataGridTextColumn>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" IsReadOnly="true"></DataGridTextColumn>
+                <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}" IsReadOnly="true"></DataGridTextColumn>
+                <DataGridTextColumn Header="Precio" Binding="{Binding Precio}" IsReadOnly="true"></DataGridTextColumn>
+                <DataGridTextColumn Header="Existencia" Binding="{Binding Existencia}" IsReadOnly="true"></DataGridTextColumn>
+                <DataGridTemplateColumn IsReadOnly="False" Header="Cantidad">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox x:Name="txtcant" KeyDown="TextBox_KeyDown"></TextBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+ 
+            </DataGrid.Columns>
         </DataGrid>
 
         <!--CRUD buttons-->
@@ -54,7 +70,7 @@
             <TextBlock Text="Numero" FontSize="16" FontWeight="Medium" VerticalAlignment="Center"/>
             <TextBlock Text="Cliente:"  FontSize="18" FontWeight="DemiBold" Style="{StaticResource space}"/>
             <ComboBox Name="cmbClientes" Width="150" IsEditable="False"></ComboBox>
-            <Button materialDesign:ButtonAssist.CornerRadius="999" Background="#FF88F188" Width="40" Height="40" Margin="10 0 0 0" BorderBrush="#FF93E2FF">
+            <Button x:Name="btnAddCliente" materialDesign:ButtonAssist.CornerRadius="999" Background="#FF88F188" Width="40" Height="40" Margin="10 0 0 0" BorderBrush="#FF93E2FF" Click="btnAddCliente_Click">
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
                     <materialDesign:PackIcon Kind="plus" VerticalAlignment="Center" HorizontalAlignment="Center"></materialDesign:PackIcon>
                 </TextBlock>
@@ -65,34 +81,16 @@
             <ListView x:Name="lstArticles" DockPanel.Dock="Bottom" Padding="10" IsSynchronizedWithCurrentItem="True">
                 <ListView.View>
                     <GridView >
-                        <GridViewColumn Header="Codigo"  DisplayMemberBinding="{Binding Codigo_producto}"></GridViewColumn>
-                        <GridViewColumn Header="Nombre" DisplayMemberBinding="{Binding Nombre}"></GridViewColumn>
-                        <GridViewColumn Header="Cantidad" >
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <wpfx:ButtonSpinner Name="SpinCantidad" Width="80" Height="30" Spin="SpinCantidad_Spin">
-                                            <TextBox  Text="0" HorizontalAlignment="Center" BorderThickness="0" Background="#FFD4D4DE" BorderBrush="White" Style="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"></TextBox>
-                                        </wpfx:ButtonSpinner>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="SubTotal" DisplayMemberBinding="{Binding Subtotal}">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate >
-                                   
-                                        <TextBlock Name="txtSubtotal" Text="$$$$"  ></TextBlock>
-                                    
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                        <GridViewColumn Header="Codigo"  DisplayMemberBinding="{Binding CodigoProducto}"></GridViewColumn>
+                        <GridViewColumn Header="Cantidad" DisplayMemberBinding="{Binding Cantidad}"></GridViewColumn>
+                        <GridViewColumn Header="SubTotal" DisplayMemberBinding="{Binding Subtotal}" ></GridViewColumn>
+
                         <GridViewColumn Header="">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
                                         <Button x:Name="btnQuitarDetalle" Click="btnQuitarDetalle_Click" Style="{StaticResource MaterialDesignFlatButton}">
-                                            <TextBlock><materialDesign:PackIcon Kind="ExitToApp"></materialDesign:PackIcon></TextBlock>
+                                            <TextBlock>X</TextBlock>
                                         </Button>
                                     </StackPanel>
                                 </DataTemplate>
@@ -102,6 +100,12 @@
                 </ListView.View>
             </ListView>
         </DockPanel>
+        
+        <!--Botones de facturacion-->
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnFactura" Margin="5" Content="Facturar"  Click="btnFactura_Click" Width="100" Background="#FF202881" BorderBrush="#FF0017A6"></Button>
+            <Button x:Name="btnLimpiar" Content="Limpiar"  Click="btnLimpiar_Click" Width="100" Background="#FF4198A0" BorderBrush="#FF44858B" Margin="5" RenderTransformOrigin="1.15,0.5"/>
+        </StackPanel>
         
     </Grid>
 </UserControl>

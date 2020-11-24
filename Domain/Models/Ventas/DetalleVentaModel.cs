@@ -19,7 +19,6 @@ namespace Domain.Models.Ventas
         [Required]public int IdVenta { get; set; }
         [Required]public string CodigoProducto { get; set; }
         [Required]public int Cantidad { get; set; }
-        public double Precio { get; set; }
         public double Subtotal { get; set; }
         public string Accion { get; set; }
         
@@ -43,7 +42,7 @@ namespace Domain.Models.Ventas
                 detVentaDataModel.IdVenta = IdVenta;
                 detVentaDataModel.CodigoProducto = CodigoProducto;
                 detVentaDataModel.Cantidad = Cantidad;
-                detVentaDataModel.Precio = Precio;
+          
                 detVentaDataModel.Subtotal = Subtotal;
                 detVentaDataModel.Accion = Accion;
 
@@ -97,9 +96,8 @@ namespace Domain.Models.Ventas
                     IdVenta = Convert.ToInt32(item[1]),
                     CodigoProducto = item[2].ToString(),
                     Cantidad = Convert.ToInt32(item[3]),
-                    Precio = Convert.ToDouble(item[4]),
-                    Subtotal = Convert.ToDouble(item[5]),
-                    Accion = item[6].ToString(),
+                    Subtotal = Convert.ToDouble(item[4]),
+                    Accion = item[6].ToString()
 
                 });
 

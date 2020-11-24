@@ -35,7 +35,7 @@ namespace DataAccess.Repositories
             parameters.Add(new SqlParameter("@SNombre", entity.SNombre));
             parameters.Add(new SqlParameter("@PApell", entity.PApellido));
             parameters.Add(new SqlParameter("@SApell", entity.SApellido));
-            parameters.Add(new SqlParameter("@Telec", entity.PNombre));
+            parameters.Add(new SqlParameter("@Telc", entity.Telefono));
 
             return ExecuteNonQuery(insert, CommandType.StoredProcedure);
         }

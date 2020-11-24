@@ -28,7 +28,7 @@ namespace DataAccess.Repositories
         public int Add(Venta entity)
         {
             parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@PCliente", entity.IdCliente));
+            parameters.Add(new SqlParameter("@id_Cliente", entity.IdCliente));
             return ExecuteNonQuery(insert, CommandType.StoredProcedure);
         }
 
@@ -50,4 +50,7 @@ namespace DataAccess.Repositories
             throw new NotImplementedException();
         }
     }
+
+
+  
 }

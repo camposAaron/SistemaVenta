@@ -22,6 +22,7 @@ namespace Domain.Models
         public string SNombre { get; set; }
         [Required] public string PApellido { get; set; }
         public string SApellido { get; set; }
+        [Required]
         public string Telefono { get; set; }
 
 
