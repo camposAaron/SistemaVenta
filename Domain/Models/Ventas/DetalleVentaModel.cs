@@ -20,7 +20,7 @@ namespace Domain.Models.Ventas
         [Required]public string CodigoProducto { get; set; }
         [Required]public int Cantidad { get; set; }
         public double Subtotal { get; set; }
-        public string Accion { get; set; }
+        public string Accion { private get; set; }
         
         private List<DetalleVentaModel> lstDetV;
         private IGenericRepository<DetalleVentas> genericRepository;
@@ -97,7 +97,6 @@ namespace Domain.Models.Ventas
                     CodigoProducto = item[2].ToString(),
                     Cantidad = Convert.ToInt32(item[3]),
                     Subtotal = Convert.ToDouble(item[4]),
-                    Accion = item[6].ToString()
 
                 });
 
@@ -106,6 +105,11 @@ namespace Domain.Models.Ventas
 
             return lstDetV;
 
+        }
+
+        public List<DetalleVentaModel> findById(int idVenta)
+        {
+            return GetAll().FindAll(e => e.IdVenta == idVenta);
         }
 
     }

@@ -1,0 +1,65 @@
+﻿<Window x:Class="SISTEMA_EXAMEN.Forms.TipoProducto.frmTipoProducto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SISTEMA_EXAMEN.Forms.TipoProducto"
+        mc:Ignorable="d"
+        Title="frmTipoProducto"  Height="250" Width="280">
+    <Grid x:Name="gridFormulario" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Margin="5" ShowGridLines="True" IsEnabled="True" >
+        <Grid.Resources>
+            <Style x:Key="title" TargetType="Label">
+                <Style.Setters>
+                    <Setter Property="FontFamily" Value="Tahoma"></Setter>
+                    <Setter Property="Foreground" Value="#444"></Setter>
+                    <Setter Property="FontSize" Value="16"></Setter>
+                    <Setter Property="FontWeight" Value="Medium"></Setter>
+                </Style.Setters>
+                <Style.Triggers x:Uid="Title">
+                    <Trigger Property="IsMouseOver" Value="true">
+                        <Setter Property="Foreground" Value="DarkBlue"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key=".inputs" TargetType="TextBox">
+                <Style.Setters>
+                    <Setter Property="FontWeight" Value="Medium"></Setter>
+                    <Setter Property="FontSize" Value="14"></Setter>
+                    <Setter Property="TextAlignment" Value="left"></Setter>
+                    <Setter Property="VerticalAlignment" Value="center"></Setter>
+                    <Setter Property="Height" Value="30"></Setter>
+                </Style.Setters>
+
+
+            </Style>
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+          
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+          
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Background="#FFCEDDEA">
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Agregar Tipo de Producto:" FontSize="18" FontWeight="DemiBold" Style="{StaticResource MaterialDesignHeadline2TextBlock}"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Content="Tipo de Producto" Style="{StaticResource title}" Foreground="#444"></Label>
+            <TextBox x:Name="txtTipo"  Width="150" IsEnabled="True" Text="" Style="{StaticResource .inputs}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Background="#FF0B5BBB" BorderBrush="#FF0D3E93" Click="Button_Click">Guardar</Button>
+        </StackPanel>
+
+
+    </Grid>
+</Window>

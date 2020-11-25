@@ -15,12 +15,13 @@ namespace Domain.Models
 {
    public class ProveedorModel
     {
-        public int IdProveedor { get; set; }
+        [Required] public string IdProveedor { get; set; }
         [Required] public string nombre { get; set; }
-        public string telefono { get; set; }
-        public string direccion { get; set; }
-        [EmailAddress]
-        public string correo_electronico { get; set; }
+
+        [Required] public string telefono { get; set; }
+        [Required] public string direccion { get; set; }
+
+        [Required] public string correo_electronico { get; set; }
 
         private IGenericRepository<Proveedor> provedorRepository;
         private List<ProveedorModel> listProveedores;
@@ -51,8 +52,8 @@ namespace Domain.Models
                         message = "Producto registrado correctamente";
                         break;
                     case EntityState.deleted:
-                        provedorRepository.Remove(IdProveedor);
-                        message = "Producto Dado de baja exitosamente";
+                        //provedorRepository.Remove(IdProveedor);
+                        //message = "Producto Dado de baja exitosamente";
                         break;
                     case EntityState.Modified:
                         provedorRepository.Edit(proveedorDataModel);
@@ -84,7 +85,7 @@ namespace Domain.Models
             {
                 listProveedores.Add(new ProveedorModel
                 {
-                    IdProveedor = Convert.ToInt32(item[0]),
+                    IdProveedor = item[0].ToString(),
                     nombre = item[1].ToString(),
                     telefono = item[2].ToString(),
                     direccion = item[3].ToString(),

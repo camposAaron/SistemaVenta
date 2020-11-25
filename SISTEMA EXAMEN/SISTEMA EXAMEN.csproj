@@ -83,11 +83,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\Compras\frmCompras.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\Principal\FormularioPrincipal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\Producto\frmProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Proveedor\frmProveedor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\TipoProducto\frmTipoProducto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,16 +114,32 @@
     <Compile Include="Forms\Cliente\frmCliente.xaml.cs">
       <DependentUpon>frmCliente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Compras\frmCompras.xaml.cs">
+      <DependentUpon>frmCompras.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Principal\FormularioPrincipal.xaml.cs">
       <DependentUpon>FormularioPrincipal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\Producto\frmProducto.xaml.cs">
       <DependentUpon>frmProducto.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Proveedor\frmProveedor.xaml.cs">
+      <DependentUpon>frmProveedor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TipoProducto\frmTipoProducto.xaml.cs">
+      <DependentUpon>frmTipoProducto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Venta\frmVenta.xaml.cs">
       <DependentUpon>frmVenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Venta\frmverVentas.xaml.cs">
+      <DependentUpon>frmverVentas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helps\DataValidation.cs" />
+    <Page Include="Forms\Venta\frmverVentas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

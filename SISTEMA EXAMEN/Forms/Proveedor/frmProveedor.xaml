@@ -1,0 +1,88 @@
+﻿<Window x:Class="SISTEMA_EXAMEN.Forms.Proveedor.frmProveedor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SISTEMA_EXAMEN.Forms.Proveedor"
+        mc:Ignorable="d"
+        Title="frmProveedor" Height="320" Width="350">
+    <Grid x:Name="gridFormulario" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Margin="5" ShowGridLines="True" IsEnabled="True">
+        <Grid.Resources>
+            <Style x:Key="title" TargetType="Label">
+                <Style.Setters>
+                    <Setter Property="FontFamily" Value="Tahoma"></Setter>
+                    <Setter Property="Foreground" Value="#444"></Setter>
+                    <Setter Property="FontSize" Value="16"></Setter>
+                    <Setter Property="FontWeight" Value="Medium"></Setter>
+                </Style.Setters>
+                <Style.Triggers x:Uid="Title">
+                    <Trigger Property="IsMouseOver" Value="true">
+                        <Setter Property="Foreground" Value="DarkBlue"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key=".inputs" TargetType="TextBox">
+                <Style.Setters>
+                    <Setter Property="FontWeight" Value="Medium"></Setter>
+                    <Setter Property="FontSize" Value="14"></Setter>
+                    <Setter Property="TextAlignment" Value="left"></Setter>
+                    <Setter Property="VerticalAlignment" Value="center"></Setter>
+                    <Setter Property="Height" Value="30"></Setter>
+                </Style.Setters>
+
+
+            </Style>
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Background="#FFCEDDEA">
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Agregar Proveedor:" FontSize="18" FontWeight="DemiBold" Style="{StaticResource MaterialDesignHeadline2TextBlock}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Content="IdProveedor" Style="{StaticResource title}" ></Label>
+            <TextBox x:Name="txtId"  Width="250" IsEnabled="True" Text="" Style="{StaticResource .inputs}"></TextBox>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Content="Nombre" Style="{StaticResource title}" ></Label>
+            <TextBox x:Name="txtNombre"  Width="250" IsEnabled="True" Text="" Style="{StaticResource .inputs}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Content="Telefono" Style="{StaticResource title}" ></Label>
+            <TextBox x:Name="txtel"  Width="250" VerticalScrollBarVisibility="Visible" IsEnabled="True" Text="" Style="{StaticResource .inputs}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Content="Direccion" Style="{StaticResource title}" ></Label>
+            <TextBox x:Name="txtdir"  Width="250"   IsEnabled="True"  Style="{StaticResource .inputs}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Content="Correo Electronico" Style="{StaticResource title}" ></Label>
+            <TextBox x:Name="txtcor"  Width="250"   IsEnabled="True"  Style="{StaticResource .inputs}"></TextBox>
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.RowSpan="7" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <Button x:Name="btnGuardar" Content="Guardar" Margin="5" Background="#FF3E4257" BorderBrush="#FF293138" Click="btnGuardar_Click"></Button>
+        </StackPanel>
+
+    </Grid>
+</Window>

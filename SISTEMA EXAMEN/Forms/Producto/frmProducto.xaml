@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SISTEMA_EXAMEN.Forms.Producto"
              xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="880" Background="#FFDFEAEE">
+             d:DesignHeight="450" d:DesignWidth="880" Background="#FFDFEAEE" >
     <Grid ShowGridLines="False" Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -27,14 +28,14 @@
 
 
         <!--data grid productos-->
-        <DataGrid x:Name="GridProductos"  Grid.Row="1" Grid.Column="0" AutoGenerateColumns="True" IsReadOnly="True" >
+        <DataGrid x:Name="GridProductos"  Grid.Row="1" Grid.Column="0" AutoGenerateColumns="True" IsReadOnly="True" MouseDoubleClick="GridProductos_MouseDoubleClick">
 
         </DataGrid>
         
         
         <!--CRUD buttons-->
         <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="btnNuevo" Content="Nuevo" Margin="5" Background="#FF202881" BorderBrush="#FF171C5D" Click="btnNuevo_Click"></Button>
+            <Button x:Name="btnNuevo" Content="Agregar" Margin="5" Background="#FF202881" BorderBrush="#FF171C5D" Click="btnNuevo_Click"></Button>
             <Button x:Name="btnEditar" Content="Editar" Margin="5" Background="#FF15647E" BorderBrush="#FF125064" Click="btnEditar_Click"></Button>
             <Button x:Name="btnEliminar" Content="Eliminar" Margin="5" Width="90" Click="btnEliminar_Click" Background="#FFF13030" BorderBrush="#FFD42F2F"></Button>
 
@@ -114,12 +115,22 @@
 
             <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="5" VerticalAlignment="Center">
                 <Label Content="Proveedor" Style="{StaticResource title}" ></Label>
-                <ComboBox Name="cmbProveedor" Width="250" IsEditable="True" ></ComboBox>
+                <ComboBox Name="cmbProveedor" Width="225" IsEditable="True" ></ComboBox>
+                <Button x:Name="btnAddProveedor" materialDesign:ButtonAssist.CornerRadius="999" Background="#FF88F188" Width="40" Height="40" Margin="10 0 0 0" BorderBrush="#FF93E2FF" Click="btnAddProveedor_Click">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="plus" VerticalAlignment="Center" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                    </TextBlock>
+                </Button>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="5" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="5" VerticalAlignment="Stretch">
                 <Label Content="Tipo Producto" Style="{StaticResource title}" ></Label>
-                <ComboBox Name="cmbTipo" Width="250" IsEditable="True"></ComboBox>
+                <ComboBox Name="cmbTipo" Width="200" IsEditable="True"></ComboBox>
+                <Button x:Name="btnAddTipo" materialDesign:ButtonAssist.CornerRadius="999" Background="#FF88F188" Width="40" Height="40" Margin="10 0 0 0" BorderBrush="#FF93E2FF" Click="btnAddTipo_Click">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="plus" VerticalAlignment="Center" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                    </TextBlock>
+                </Button>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center" >

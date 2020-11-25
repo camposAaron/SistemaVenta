@@ -21,6 +21,7 @@ namespace SISTEMA_EXAMEN.Forms.Principal
     {
         private Producto.frmProducto frmProducto;
         private frmVenta frmVenta;
+        private frmverVentas frmver;
 
         public FormularioPrincipal()
         {
@@ -56,6 +57,37 @@ namespace SISTEMA_EXAMEN.Forms.Principal
                 Container.Children.Clear();
                 Container.Children.Add(frmVenta);
             }
+
+         
+        }
+
+        private void MenuItemVerVenta_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (frmver == null)
+            {
+                frmver = new frmverVentas();
+                Container.Children.Add(frmver);
+            }
+            else
+            {
+                frmver = new frmverVentas();
+                Container.Children.Clear();
+                Container.Children.Add(frmver);
+            }
+
+
+        }
+
+
+        private void compras_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void VerCompras_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

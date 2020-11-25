@@ -34,14 +34,7 @@
             <!--Menu-->
             <Menu Grid.Row="0" VerticalAlignment="Center" DockPanel.Dock="Top">
 
-                <!--Sistema-->
-                <MenuItem Header="Sistema" Icon="{materialDesign:PackIcon Kind=Tools}">
-                    <MenuItem Header="Cambiar Contraseña" Icon="{materialDesign:PackIcon Kind=KeyChange}"></MenuItem>
-                    <MenuItem Header="Backup" Icon="{materialDesign:PackIcon Kind=Reload}" ></MenuItem>
-                    <MenuItem Header="Cerrar Sesion" Icon="{materialDesign:PackIcon Kind=ExitToApp}"></MenuItem>
-                </MenuItem>
-
-
+         
                 <!--Ventas-->
                 <MenuItem Header="Ventas">
                     <MenuItem.Icon>
@@ -49,25 +42,18 @@
                     </MenuItem.Icon>
 
                     <MenuItem Header="_Nueva Venta" Icon="{materialDesign:PackIcon Kind=NewspaperPlus}" Click="MenuItemNuevaVenta_Click"></MenuItem>
-                    <MenuItem Header="_Ver Ventas" Icon="{materialDesign:PackIcon Kind=Eye}"></MenuItem>
+                    <MenuItem Header="_Ver Ventas" Icon="{materialDesign:PackIcon Kind=Eye}" Click="MenuItemVerVenta_Click"></MenuItem>
                 </MenuItem>
 
                 <!--Compras-->
                 <MenuItem Header="Compras" Icon="{materialDesign:PackIcon Kind=Shopping}">
-
-                    <MenuItem Header="_Nueva Compra" Icon="{materialDesign:PackIcon Kind=NewspaperPlus}"></MenuItem>
-                    <MenuItem Header="_Nueva Devolucion" Icon="{materialDesign:PackIcon Kind=NewspaperPlus}"></MenuItem>
-                    <MenuItem Header="_Ver Compras" Icon="{materialDesign:PackIcon Kind=Eye}"></MenuItem>
-                    <MenuItem Header="_Ver Devoluciones" Icon="{materialDesign:PackIcon Kind=Eye}"></MenuItem>
+                    <MenuItem Name="compras" Header="_Nueva Compra" Icon="{materialDesign:PackIcon Kind=NewspaperPlus}" Click="compras_Click"></MenuItem>
+                    <MenuItem Name="VerCompras" Header="_Ver Compras" Icon="{materialDesign:PackIcon Kind=Eye}" Click="VerCompras_Click"></MenuItem>
                 </MenuItem>
 
                 <!--Productos-->
                 <MenuItem Header="Productos" Click="MenuItemProducto_Click" Icon="{materialDesign:PackIcon Kind=BoxCutter}"></MenuItem>
-
                 <MenuItem Header="Clientes" Icon="{materialDesign:PackIcon Kind=BoxCutter}"></MenuItem>
-                <MenuItem Header="Empleados" Icon="{materialDesign:PackIcon Kind=BagPersonal}"></MenuItem>
-                <MenuItem Header="Reportes" Icon="{materialDesign:PackIcon Kind=FileReport}"></MenuItem>
-
             </Menu>
             <!--Fin Menu-->
             <Grid x:Name="Container" DockPanel.Dock="Bottom"></Grid>

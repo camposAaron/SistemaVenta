@@ -15,6 +15,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Domain.Models;
 using Xceed.Wpf.Toolkit;
+using SISTEMA_EXAMEN.Forms.TipoProducto;
+using SISTEMA_EXAMEN.Forms.Proveedor;
+
 
 namespace SISTEMA_EXAMEN.Forms.Producto
 {
@@ -100,6 +103,7 @@ namespace SISTEMA_EXAMEN.Forms.Producto
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
+
             producto.Codigo_producto = txtCodigo.Text;
             producto.Nombre = txtNombre.Text;
             producto.Descripcion = txtDescripcion.Text;
@@ -132,6 +136,9 @@ namespace SISTEMA_EXAMEN.Forms.Producto
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
+            btnGuardar.Content = "Comprar";
+            btnAddProveedor.IsEnabled = true;
+            restart2();
             producto.state = Domain.ValueObjects.EntityState.Added;
             txtCodigo.IsEnabled = true;
             gridFormulario.IsEnabled = true;
@@ -139,9 +146,23 @@ namespace SISTEMA_EXAMEN.Forms.Producto
 
         }
 
+        private void restart2()
+        {
+            cmbProveedor.IsEnabled = true;
+            txtDescripcion.IsEnabled = true;
+            txtCodigo.Clear();
+            txtNombre.Clear();
+            txtDescripcion.Clear();
+            txtPrecio.Clear();
+            SpinExistencia.IsEnabled = true;
+        }
+
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-            
+            btnGuardar.Content = "Guardar Cambios";
+            btnAddProveedor.IsEnabled = true;
+            cmbProveedor.IsEnabled = true;
+
             if(GridProductos.SelectedCells.Count > 0)
             {
                 ProductoModel producto2 = new ProductoModel();
@@ -187,6 +208,21 @@ namespace SISTEMA_EXAMEN.Forms.Producto
             cmbProveedor.SelectedValuePath = "IdProveedor";
         }
 
-        
+        private void btnAddProveedor_Click(object sender, RoutedEventArgs e)
+        {
+            frmProveedor prove = new frmProveedor(cmbProveedor);
+            prove.Show();
+        }
+
+        private void btnAddTipo_Click(object sender, RoutedEventArgs e)
+        {
+            frmTipoProducto tipo = new frmTipoProducto(cmbTipo);
+            tipo.Show();
+        }
+
+        private void GridProductos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            GridProductos.UnselectAll();
+        }
     }
 }

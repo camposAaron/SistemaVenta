@@ -16,7 +16,7 @@ namespace Domain.Models
   public  class TipoProductoModel
     {
         public int IdTipo {private get; set; }
-       [Required] public string Tipo { get;private set; }
+       [Required] public string Tipo { get; set; }
 
         private List<TipoProductoModel> listTipos;
         private IGenericRepository<TipoProducto> TypeProductRepository;
