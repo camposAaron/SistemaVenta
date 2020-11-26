@@ -12,7 +12,6 @@ namespace DataAccess.Entities
         public int IdVenta { get; set; }
         public string CodigoProducto { get; set; }
         public int Cantidad { get; set; }
-        public double Precio { get; set; }
         public double Subtotal { get; set; }
         public string Accion { get; set; }
     }
