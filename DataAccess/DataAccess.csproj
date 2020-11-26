@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICompraRepository.cs" />
     <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Contracts\IProductoRepository.cs" />
     <Compile Include="Entities\Cliente.cs" />
@@ -51,8 +52,10 @@
     <Compile Include="Entities\Detalle_Devolucion.cs" />
     <Compile Include="Entities\Devolucion.cs" />
     <Compile Include="Entities\Persona.cs" />
+    <Compile Include="Entities\PresentacionProducto.cs" />
     <Compile Include="Entities\Producto.cs" />
     <Compile Include="Entities\Proveedor.cs" />
+    <Compile Include="Entities\RubroProducto.cs" />
     <Compile Include="Entities\TipoProducto.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Entities\Venta.cs" />
@@ -65,8 +68,10 @@
     <Compile Include="Repositories\DetalleDevolucionRepository.cs" />
     <Compile Include="Repositories\DetalleVentaRepository.cs" />
     <Compile Include="Repositories\DevolucionRepository.cs" />
+    <Compile Include="Repositories\PresentacionProductoRepository.cs" />
     <Compile Include="Repositories\ProductoRepository.cs" />
     <Compile Include="Repositories\ProveedorRepository.cs" />
+    <Compile Include="Repositories\RubroProductoRepository.cs" />
     <Compile Include="Repositories\TipoProductoRepository.cs" />
     <Compile Include="Repositories\VentaRepository.cs" />
   </ItemGroup>

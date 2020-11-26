@@ -18,13 +18,14 @@ namespace DataAccess.Repositories
         private string insert;
         private string delete;
         private string selectAll;
+        private string find;
 
         public ProductoRepository()
         {
-            insert = "NProductos";
-            update = "ModificarProducto";
-            selectAll = "ListarProduct";
-            delete = "BajaProducto";
+            insert = "Producto_INS";
+            update = "Producto_UPD";
+            selectAll = "Producto_S";
+            delete = "Producto_Buscar";
 
         }
 
@@ -33,29 +34,48 @@ namespace DataAccess.Repositories
         {
             parameters = new List<SqlParameter>();
 
-            parameters.Add(new SqlParameter("@cod_arti", entity.codigo_producto));
-            parameters.Add(new SqlParameter("@NombreP", entity.nombre));
-            parameters.Add(new SqlParameter("@Desp", entity.descripcion));
-            parameters.Add(new SqlParameter("@precio", entity.precio));
-            parameters.Add(new SqlParameter("@exist", entity.existencia));
-            parameters.Add(new SqlParameter("@id_Prov", entity.IdProveedor));
-            parameters.Add(new SqlParameter("@id_TipoP", entity.IdTipoProducto));
+            parameters.Add(new SqlParameter("@Codigo", entity.Codigo_producto));
+            parameters.Add(new SqlParameter("@nombre", entity.NombreComercial));
+            parameters.Add(new SqlParameter("@desc", entity.Descripcion));
+            parameters.Add(new SqlParameter("@uso", entity.UsoTerapeutico));
+            parameters.Add(new SqlParameter("@precio", entity.Precio));
+            parameters.Add(new SqlParameter("@existencia", entity.Existencia));
+            parameters.Add(new SqlParameter("@idTipo", entity.IdTipo));
+            parameters.Add(new SqlParameter("@idRubro", entity.IdRubro));
+            parameters.Add(new SqlParameter("@idPresentacion", entity.IdPresentacion));
+            parameters.Add(new SqlParameter("@concentracion", entity.Concentracion));
+            parameters.Add(new SqlParameter("@laboratorio", entity.Laboratorio));
+            parameters.Add(new SqlParameter("@reseta", entity.Reseta));
+            parameters.Add(new SqlParameter("@estado_p", entity.Estado));
+            parameters.Add(new SqlParameter("@fecha_elaboracion", entity.FechaElaboracion));
+            parameters.Add(new SqlParameter("@fecha_vencimiento", entity.FechaVencimiento));
 
-
-            //   return ExecuteNonQuery(insert, CommandType.StoredProcedure);
             return ExecuteNonQuery(insert, CommandType.StoredProcedure);
         }
 
         public int Edit(Producto entity)
         {
-            parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@cod_Pro", entity.codigo_producto));
-            parameters.Add(new SqlParameter("@nombrep", entity.nombre));
-            parameters.Add(new SqlParameter("@precio", entity.precio));
-            parameters.Add(new SqlParameter("@exits", entity.existencia));
-            parameters.Add(new SqlParameter("@id_tipop", entity.IdTipoProducto));
+            parameters.Add(new SqlParameter("@Codigo", entity.Codigo_producto));
+            parameters.Add(new SqlParameter("@nombre", entity.NombreComercial));
+            parameters.Add(new SqlParameter("@desc", entity.Descripcion));
+            parameters.Add(new SqlParameter("@uso", entity.UsoTerapeutico));
+            parameters.Add(new SqlParameter("@precio", entity.Precio));
+            parameters.Add(new SqlParameter("@existencia", entity.Existencia));
+            parameters.Add(new SqlParameter("@idTipo", entity.IdTipo));
+            parameters.Add(new SqlParameter("@idRubro", entity.IdRubro));
+            parameters.Add(new SqlParameter("@idPresentacion", entity.IdPresentacion));
+            parameters.Add(new SqlParameter("@concentracion", entity.Concentracion));
+            parameters.Add(new SqlParameter("@laboratorio", entity.Laboratorio));
+            parameters.Add(new SqlParameter("@reseta", entity.Reseta));
+            parameters.Add(new SqlParameter("@fecha_elaboracion", entity.FechaElaboracion));
+            parameters.Add(new SqlParameter("@fecha_vencimiento", entity.FechaVencimiento));
 
             return ExecuteNonQuery(update, CommandType.StoredProcedure);
+        }
+
+        public DataTable findById(int idPK)
+        {
+            throw new NotImplementedException();
         }
 
         public DataTable GetAll()
@@ -73,9 +93,19 @@ namespace DataAccess.Repositories
         public int Remove(string codigo)
         {
             parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@codigoProducto", codigo));
+            parameters.Add(new SqlParameter("@idProducto", codigo));
             return ExecuteNonQuery(delete, CommandType.StoredProcedure);
         }
+
+        public DataTable FindByCode(string code)
+        {
+
+            parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("Codigo", code));
+
+            return ExecuteReader(find, CommandType.StoredProcedure);
+        }
+
 
     
     }

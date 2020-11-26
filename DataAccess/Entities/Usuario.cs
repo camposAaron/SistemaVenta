@@ -11,5 +11,7 @@ namespace DataAccess.Entities
         public int IdUsuario { get; set; }
         public string NombreUsuario { get; set; }
         public string Contraseña { get; set; }
+        public bool Estado { get; set; }
     }
+
 }

@@ -17,23 +17,29 @@ namespace DataAccess.Repositories
     
         private string insert;
         private string selectAll;
-
+        private string delete;
 
         public TipoProductoRepository()
         {
-            insert = "NTipoProducto";
-            selectAll = "ListarTipoProducto";
+            insert = "TipoProducto_INS";
+            delete = "TipoProducto_DEL";
+            selectAll = "TipoProducto_S";
          
         }
         public int Add(TipoProducto entity)
         {
             parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@nombre", entity.Tipo));
+            parameters.Add(new SqlParameter("@Tipo", entity.Tipo));
 
             return ExecuteNonQuery(insert, CommandType.StoredProcedure);
         }
 
         public int Edit(TipoProducto entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataTable findById(int idPK)
         {
             throw new NotImplementedException();
         }
@@ -45,7 +51,7 @@ namespace DataAccess.Repositories
 
         public int Remove(int idPk)
         {
-            throw new NotImplementedException();
+            return ExecuteNonQuery(delete, CommandType.StoredProcedure);
         }
     }
 }
