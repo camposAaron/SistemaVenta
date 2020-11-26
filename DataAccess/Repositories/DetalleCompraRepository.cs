@@ -15,27 +15,27 @@ namespace DataAccess.Repositories
     {
         private string update;
         private string insert;
-        private string delete;
+        private string find;
         private string selectAll;
 
 
         public DetalleCompraRepository()
         {
-            update = "modificarDetalle_Compras";
-            insert = "NDetalleCompra";
-            selectAll = "Listardetallecompras";
+            update = "Detalle_Compra_UPD";
+            insert = "Detalle_Compra_INS";
+            selectAll = "Detalle_Compra_S";
+            find = "DetalleCompraBuscar";
 
         }
 
         public int Add(DetalleCompra entity)
         {
             parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@idcompra", entity.IdCompra));
-            parameters.Add(new SqlParameter("@cod_producto", entity.CodigoProducto));
+            parameters.Add(new SqlParameter("@idCompra", entity.IdCompra));
+            parameters.Add(new SqlParameter("@CodigoProd", entity.CodigoProducto));
+            parameters.Add(new SqlParameter("@precioCompra", entity.Precio));
             parameters.Add(new SqlParameter("@cantidad", entity.Cantidad));
-            parameters.Add(new SqlParameter("@precioCom", entity.Precio));
-      
-
+        
             return ExecuteNonQuery(insert, CommandType.StoredProcedure);
         }
 
@@ -50,6 +50,13 @@ namespace DataAccess.Repositories
 
 
             return ExecuteNonQuery(update, CommandType.StoredProcedure);
+        }
+
+        public DataTable findById(int idPK)
+        {
+            parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@id_detCompra", idPK));
+            return ExecuteReader(find, CommandType.StoredProcedure);
         }
 
         public DataTable GetAll()

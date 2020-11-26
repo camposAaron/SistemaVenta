@@ -22,20 +22,23 @@ namespace DataAccess.Repositories
 
         public ClienteRepository()
         {
-            update = "ModificarCL";
-            insert = "Ncliente";
-            selectAll = "ListarC";
-
+            update = "Cliente_UPD";
+            insert = "Cliente_INS";
+            selectAll = "Cliente_S";
+            delete = "Cliente_DEL";
     }
 
     public int Add(Cliente entity)
         {
             parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@PNombre",entity.PNombre));
-            parameters.Add(new SqlParameter("@SNombre", entity.SNombre));
-            parameters.Add(new SqlParameter("@PApell", entity.PApellido));
-            parameters.Add(new SqlParameter("@SApell", entity.SApellido));
-            parameters.Add(new SqlParameter("@Telc", entity.Telefono));
+            parameters.Add(new SqlParameter("@DNI",entity.Cedula));
+            parameters.Add(new SqlParameter("@PN", entity.PrimerNombre));
+            parameters.Add(new SqlParameter("@SN", entity.SegundoNombre));
+            parameters.Add(new SqlParameter("@PA", entity.PrimerApellido));
+            parameters.Add(new SqlParameter("@SA", entity.SegundoApellido));
+            parameters.Add(new SqlParameter("@fechaNac", entity.FechaNacimiento));
+            parameters.Add(new SqlParameter("@dir", entity.Direccion));
+            parameters.Add(new SqlParameter("@tel", entity.Telefono));
 
             return ExecuteNonQuery(insert, CommandType.StoredProcedure);
         }
@@ -43,10 +46,22 @@ namespace DataAccess.Repositories
         public int Edit(Cliente entity)
         {
             parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@ID_Cliente", entity.IdCliente));
-            parameters.Add(new SqlParameter("@TelC", entity.Telefono));
-         
+            parameters.Add(new SqlParameter("@cod_cliente", entity.IdCliente));
+            parameters.Add(new SqlParameter("@DNI", entity.Cedula));
+            parameters.Add(new SqlParameter("@PN", entity.PrimerNombre));
+            parameters.Add(new SqlParameter("@SN", entity.SegundoNombre));
+            parameters.Add(new SqlParameter("@PA", entity.PrimerApellido));
+            parameters.Add(new SqlParameter("@SA", entity.SegundoApellido));
+            parameters.Add(new SqlParameter("@fechaNac", entity.FechaNacimiento));
+            parameters.Add(new SqlParameter("@dir", entity.Direccion));
+            parameters.Add(new SqlParameter("@tel", entity.Telefono));
+
             return ExecuteNonQuery(update, CommandType.StoredProcedure);
+        }
+
+        public DataTable findById(int idPK)
+        {
+            throw new NotImplementedException();
         }
 
         public DataTable GetAll()
@@ -56,7 +71,7 @@ namespace DataAccess.Repositories
 
         public int Remove(int idPk)
         {
-            throw new NotImplementedException();
+            return ExecuteNonQuery(delete, CommandType.StoredProcedure);
         }
     }
 }

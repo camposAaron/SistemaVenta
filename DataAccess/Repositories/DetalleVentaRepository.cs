@@ -17,20 +17,21 @@ namespace DataAccess.Repositories
         private string update;
         private string insert;
         private string selectAll;
-
+        private string find;
 
         public DetalleVentaRepository()
         {
-            update = "modificarDetalle_Venta";
-            insert = "NDetalleVenta";
-            selectAll = "ListarDetalle_Venta";
+            update = "DetalleVenta_UPD";
+            insert = "DetalleVenta_INS";
+            selectAll = "DetalleVenta_S";
+            find = "DetalleVenta_Busqueda";
         }
 
         public int Add(DetalleVentas entity)
         {
             parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@N_venta", entity.IdVenta));
-            parameters.Add(new SqlParameter("@cod_producto", entity.CodigoProducto));
+            parameters.Add(new SqlParameter("@id_venta", entity.IdVenta));
+            parameters.Add(new SqlParameter("@CodigoProd", entity.CodigoProducto));
             parameters.Add(new SqlParameter("@cantidad", entity.Cantidad));
             return ExecuteNonQuery(insert, CommandType.StoredProcedure);
         }
@@ -38,11 +39,17 @@ namespace DataAccess.Repositories
         public int Edit(DetalleVentas entity)
         {
             parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@id_detalleVenta", entity.IdDetalleVenta));
-            parameters.Add(new SqlParameter("@cod_produ", entity.CodigoProducto));
-            parameters.Add(new SqlParameter("@nuevacantidad", entity.Cantidad));
-            parameters.Add(new SqlParameter("@accion", entity.Accion));
+            parameters.Add(new SqlParameter("@idDetVenta", entity.IdDetalleVenta));
+            parameters.Add(new SqlParameter("@CodigoProd", entity.CodigoProducto));
+            parameters.Add(new SqlParameter("@nuevaCantidad", entity.Cantidad));
             return ExecuteNonQuery(update, CommandType.StoredProcedure);
+        }
+
+        public DataTable findById(int idPK)
+        {
+            parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@idDetVenta", idPK));
+            return ExecuteReader(find, CommandType.StoredProcedure);
         }
 
         public DataTable GetAll()

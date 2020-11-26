@@ -17,38 +17,52 @@ namespace DataAccess.Repositories
         private string update;
         private string insert;
         private string selectAll;
+        private string delete;
+        private string find;
 
         public ProveedorRepository()
         {
-            update = "ModificarProvee";
-            insert = "NProveedores";
-            selectAll = "ListarProv";
+            update = "Proveedor_UPD";
+            insert = "Proveedor_INS";
+            selectAll = "Proveedor_S";
+            delete = "Proveedor_DEL";
+            find = "Proveedor_Busqueda";
         }
 
         public int Add(Proveedor entity)
         {
             parameters = new List<SqlParameter>();
 
-            parameters.Add(new SqlParameter("@id_prove", entity.IdProveedor));
-            parameters.Add(new SqlParameter("@NombreProv", entity.nombre));
-            parameters.Add(new SqlParameter("@Tel", entity.telefono));
-            parameters.Add(new SqlParameter("@Direccion", entity.direccion));
-            parameters.Add(new SqlParameter("@CorreoP", entity.correo_electronico));
+            parameters.Add(new SqlParameter("Nombre_proveedor", entity.Nombre));
+            parameters.Add(new SqlParameter("@Dir", entity.Direccion));
+            parameters.Add(new SqlParameter("@website", entity.WebSite));
+            parameters.Add(new SqlParameter("@CorreoP", entity.Correo));
+            parameters.Add(new SqlParameter("@cuenta_banco", entity.CuentaBancaria));
+            parameters.Add(new SqlParameter("@tel", entity.Telefono));
 
-
-            //   return ExecuteNonQuery(insert, CommandType.StoredProcedure);
             return ExecuteNonQuery(insert, CommandType.StoredProcedure);
         }
 
         public int Edit(Proveedor entity)
         {
-            parameters.Add(new SqlParameter("@id_prove", entity.IdProveedor));
-            parameters.Add(new SqlParameter("@TelP", entity.telefono));
-            parameters.Add(new SqlParameter("@direcci", entity.direccion));
-            parameters.Add(new SqlParameter("@correop", entity.correo_electronico));
-            
+            parameters = new List<SqlParameter>();
+
+            parameters.Add(new SqlParameter("@idProv", entity.IdProveedor));
+            parameters.Add(new SqlParameter("@NombreProv", entity.Nombre));
+            parameters.Add(new SqlParameter("@direcci", entity.Direccion));
+            parameters.Add(new SqlParameter("@correop", entity.Correo));
+            parameters.Add(new SqlParameter("@correop", entity.CuentaBancaria));
+            parameters.Add(new SqlParameter("@tel", entity.Telefono));
+
 
             return ExecuteNonQuery(update, CommandType.StoredProcedure);
+        }
+
+        public DataTable findById(int idPK)
+        {
+            parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@IdProv", idPK));
+            return ExecuteReader(find, CommandType.StoredProcedure);
         }
 
         public DataTable GetAll()
@@ -58,7 +72,7 @@ namespace DataAccess.Repositories
 
         public int Remove(int idPk)
         {
-            throw new NotImplementedException();
+            return ExecuteNonQuery(delete, CommandType.StoredProcedure);
         }
     }
 }

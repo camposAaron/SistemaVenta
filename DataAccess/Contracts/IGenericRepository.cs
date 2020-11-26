@@ -13,5 +13,6 @@ namespace DataAccess.Contracts
         int Edit(Entity entity);
         DataTable GetAll();
         int Remove(int idPk);
+        DataTable findById(int idPK);
     }
 }

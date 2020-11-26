@@ -14,15 +14,15 @@ namespace DataAccess.Repositories
 {
     public class DevolucionRepository : MasterRepository, IGenericRepository<Devolucion>
     {
-        private string update;
+       
         private string insert;
         private string selectAll;
 
         public DevolucionRepository()
         {
-            update = "Mdevolucion";
-            insert = "nueva_dev";
-            selectAll = "ListarDevolu";
+           
+            insert = "DevolucionCompra_INS";
+            selectAll = "DevolucionCompra_S";
         }
 
 
@@ -30,17 +30,18 @@ namespace DataAccess.Repositories
         {
             parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@id_compra", entity.IdCompra));
-            parameters.Add(new SqlParameter("@id_venta", entity.IdVenta));
+
             return ExecuteNonQuery(insert, CommandType.StoredProcedure);
         }
 
         public int Edit(Devolucion entity)
         {
-            parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@id_devolucion", entity.IdDevolucion));
-            parameters.Add(new SqlParameter("@idcompra", entity.IdCompra));
-            parameters.Add(new SqlParameter("@nventa", entity.IdVenta));
-            return ExecuteNonQuery(insert, CommandType.StoredProcedure);
+            throw new NotImplementedException();
+        }
+
+        public DataTable findById(int idPK)
+        {
+            throw new NotImplementedException();
         }
 
         public DataTable GetAll()

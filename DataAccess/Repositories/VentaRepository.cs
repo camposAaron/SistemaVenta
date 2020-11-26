@@ -16,12 +16,14 @@ namespace DataAccess.Repositories
         private string update;
         private string insert;
         private string selectAll;
+        private string find;
 
         public VentaRepository()
         {
-            update = "ModificarVentas";
-            insert = "Nventas";
-            selectAll = "ListarVentas";
+            update = "Venta_UPD";
+            insert = "Venta_INS";
+            selectAll = "Venta_S";
+            find = "Venta_Busqueda";
 
         }
 
@@ -29,15 +31,21 @@ namespace DataAccess.Repositories
         {
             parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@id_Cliente", entity.IdCliente));
+            parameters.Add(new SqlParameter("@idUsuario", entity.IdUsuario));
             return ExecuteNonQuery(insert, CommandType.StoredProcedure);
         }
 
         public int Edit(Venta entity)
         {
             parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@n_ventas", entity.IdVenta));
+            parameters.Add(new SqlParameter("@id_venta", entity.IdVenta));
             parameters.Add(new SqlParameter("@id_cliente", entity.IdCliente));
-            return ExecuteNonQuery(insert, CommandType.StoredProcedure);
+            return ExecuteNonQuery(update, CommandType.StoredProcedure);
+        }
+
+        public DataTable findById(int idPK)
+        {
+            return ExecuteReader(find, CommandType.StoredProcedure);
         }
 
         public DataTable GetAll()

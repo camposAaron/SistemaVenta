@@ -12,34 +12,42 @@ using DataAccess.Repositories.Connection;
 
 namespace DataAccess.Repositories
 {
-    public class CompraRepository : MasterRepository, IGenericRepository<Compra>
+    public class CompraRepository : MasterRepository, ICompraRepository
     {
 
         private string update;
         private string insert;
         private string selectAll;
+        private string find;
 
         public CompraRepository()
         {
-            update = "Mcompra";
-            insert = "Ncompra";
-            selectAll = "ListarCompras";
-
+            update = "Compra_UPD";
+            insert = "Compra_INS";
+            selectAll = "Compra_S";
+            find = "Compra_Busqueda";
         }
         public int Add(Compra entity)
         {
             parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@idprov", entity.IdProveedor));
-            parameters.Add(new SqlParameter("@tipopago", entity.TipoPago));
+            parameters.Add(new SqlParameter("@IdProv", entity.IdProveedor));
+            parameters.Add(new SqlParameter("@IdUsuario", entity.IdUsuario));
             return ExecuteNonQuery(insert, CommandType.StoredProcedure);
         }
 
         public int Edit(Compra entity)
         {
-            parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@id_Compra", entity.IdProveedor));
-            parameters.Add(new SqlParameter("TipoPago", entity.TipoPago));
-            return ExecuteNonQuery(update, CommandType.StoredProcedure);
+            throw new NotImplementedException();
+        }
+
+        public DataTable FindById(int id)
+        {
+            return ExecuteReader(find, CommandType.StoredProcedure);
+        }
+
+        public DataTable findById(int idPK)
+        {
+            throw new NotImplementedException();
         }
 
         public DataTable GetAll()
