@@ -4,19 +4,188 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SISTEMA_EXAMEN.Forms.Compras"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="#FFDFEAEE">
-    <Grid ShowGridLines="True" Margin="10">
+    <Grid Margin="10">
         <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="1.4*"></ColumnDefinition>
-        <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="1.6*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
+
+
+
+
+        <!--Formulario agrega productos-->
+        <Grid x:Name="gridFormulario" Grid.Column="0" Grid.Row="1" Margin="5" ShowGridLines="True" IsEnabled="True">
+            <Grid.Resources>
+                <Style x:Key="title" TargetType="Label">
+                    <Style.Setters>
+                        <Setter Property="FontFamily" Value="Tahoma"></Setter>
+                        <Setter Property="Foreground" Value="#444"></Setter>
+                        <Setter Property="FontSize" Value="16"></Setter>
+                        <Setter Property="FontWeight" Value="Medium"></Setter>
+                    </Style.Setters>
+                    <Style.Triggers x:Uid="Title">
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Foreground" Value="DarkBlue"></Setter>
+                            <Setter Property="Cursor" Value="Hand"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
+                <Style x:Key=".inputs" TargetType="TextBox">
+                    <Style.Setters>
+                        <Setter Property="FontWeight" Value="Medium"></Setter>
+                        <Setter Property="FontSize" Value="14"></Setter>
+                        <Setter Property="TextAlignment" Value="left"></Setter>
+                        <Setter Property="VerticalAlignment" Value="center"></Setter>
+                        <Setter Property="Height" Value="30"></Setter>
+                    </Style.Setters>
+
+
+                </Style>
+            </Grid.Resources>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition ></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="1.3*"></RowDefinition>
+                <RowDefinition Height="1.3*"></RowDefinition>
+               
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Background="#FFCEDDEA">
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Detalle de Compra Producto:" FontSize="18" FontWeight="DemiBold" Style="{StaticResource MaterialDesignHeadline2TextBlock}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Producto:"></TextBlock>
+                    <RadioButton Name="rdNew"  Content="Nuevo" Checked="rdNew_Checked" GroupName="rbp"></RadioButton>
+                    <RadioButton  Name="rdReg"  Content="Registrado" Checked="rdReg_Checked" GroupName="rbp" ></RadioButton>
+                </StackPanel>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5" VerticalAlignment="Center">
+                <Label Content="Selecciona" Style="{StaticResource title}" ></Label>
+                <ComboBox x:Name="cmbProducts"  Width="150" SelectionChanged="cmbProducts_SelectionChanged"></ComboBox>
+                
+                <Label Content="Codigo" Style="{StaticResource title}" ></Label>
+                <TextBox x:Name="txtCodigo"  Width="100" IsEnabled="False" Text="codigo aqui" Style="{StaticResource .inputs}"></TextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="Nombre" Style="{StaticResource title}" ></Label>
+                <TextBox x:Name="txtNombre"  Width="250" IsEnabled="True" Text="" Style="{StaticResource .inputs}"></TextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="Descripcion" Style="{StaticResource title}" ></Label>
+                <TextBox x:Name="txtDescripcion"  Width="250" TextWrapping="Wrap" Height="30" VerticalScrollBarVisibility="Visible" IsEnabled="True" Text="" Style="{StaticResource .inputs}"></TextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="Precio de Compra" Style="{StaticResource title}" ></Label>
+                <TextBox x:Name="txtPrecio"  Width="100"   IsEnabled="True"  Style="{StaticResource .inputs}"></TextBox>
+                <Label Content="Precio de Venta" Style="{StaticResource title}" ></Label>
+                <TextBox x:Name="txtPrecio2"  Width="100"   IsEnabled="True"  Style="{StaticResource .inputs}"></TextBox>
+                <Label Content="Cantidad" Style="{StaticResource title}" ></Label>
+                <wpfx:ButtonSpinner Name="SpinExistencia" Width="80" Height="30" Spin="SpinExistencia_Spin">
+                   
+                </wpfx:ButtonSpinner>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="5" VerticalAlignment="Center">
+                <Label Content="Proveedor" Style="{StaticResource title}" ></Label>
+                <ComboBox Name="cmbProveedor" Width="225" IsEditable="True" ></ComboBox>
+                <Button x:Name="btnAddProveedor" materialDesign:ButtonAssist.CornerRadius="999" Background="#FF88F188" Width="40" Height="40" Margin="10 0 0 0" BorderBrush="#FF93E2FF" Click="btnAddProveedor_Click">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="plus" VerticalAlignment="Center" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                    </TextBlock>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="5" VerticalAlignment="Stretch">
+                <Label Content="Tipo Producto" Style="{StaticResource title}" ></Label>
+                <ComboBox Name="cmbTipo" Width="200" IsEditable="True"></ComboBox>
+                <Button x:Name="btnAddTipo" materialDesign:ButtonAssist.CornerRadius="999" Background="#FF88F188" Width="40" Height="40" Margin="10 0 0 0" BorderBrush="#FF93E2FF" Click="btnAddTipo_Click">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon Kind="plus" VerticalAlignment="Center" HorizontalAlignment="Center"></materialDesign:PackIcon>
+                    </TextBlock>
+                </Button>
+            </StackPanel>
+
+            
+            </Grid>
+
+
+                <!--CRUD buttons-->
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="btnAdd" Content="Agregar" Margin="5" Background="#FF202881" BorderBrush="#FF171C5D" Click="btnAdd_Click" Style="{StaticResource MaterialDesignFlatMidBgButton }">
+
+            </Button>
+        </StackPanel>
+
+        <!-- header-->
+        <StackPanel Orientation="Horizontal" Background="#FFCEDDEA" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
+            <StackPanel.Resources>
+                <Style x:Key="space" TargetType="TextBlock">
+                    <Style.Setters>
+                        <Setter Property="Padding" Value="10"></Setter>
+                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    </Style.Setters>
+                </Style>
+            </StackPanel.Resources>
+
+            <TextBlock Text="Compras:" Style="{StaticResource space}" FontSize="18" FontWeight="DemiBold"/>
+            <TextBlock VerticalAlignment="Center" FontSize="16" Text="Tipo de pago"></TextBlock>
+            <ComboBox Name="cmbTipoPago" Width="100" Height="27">
+                <ComboBoxItem Content="Al Credito"></ComboBoxItem>
+                <ComboBoxItem Content="Al Contado"></ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <DockPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="1">
+
+            <ListView x:Name="lstArticles" DockPanel.Dock="Bottom" Padding="10" IsSynchronizedWithCurrentItem="True">
+                <ListView.View>
+                    <GridView >
+                        <GridViewColumn Header="Codigo"  DisplayMemberBinding="{Binding CodigoProducto}"></GridViewColumn>
+                        <GridViewColumn Header="Cantidad" DisplayMemberBinding="{Binding Cantidad}"></GridViewColumn>
+                        <GridViewColumn Header="PrecioCompra" DisplayMemberBinding="{Binding Precio}" ></GridViewColumn>
+                        <GridViewColumn Header="SubTotal" DisplayMemberBinding="{Binding Subtotal}" ></GridViewColumn>
+                        
+                        <GridViewColumn Header="">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button x:Name="btnQuitarDetalle" Click="btnQuitarDetalle_Click" Style="{StaticResource MaterialDesignFlatButton}">
+                                            <TextBlock>X</TextBlock>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+
+        <!--Botones de facturacion-->
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnFactura" Margin="5" Content="Facturar"  Click="btnFactura_Click" Width="100" Background="#FF202881" BorderBrush="#FF0017A6"></Button>
+            <Button x:Name="btnLimpiar" Content="Limpiar"  Click="btnLimpiar_Click" Width="100" Background="#FF4198A0" BorderBrush="#FF44858B" Margin="5" RenderTransformOrigin="1.15,0.5"/>
+        </StackPanel>
 
     </Grid>
 </UserControl>

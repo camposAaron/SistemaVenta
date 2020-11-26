@@ -23,7 +23,7 @@ namespace DataAccess.Repositories
         {
             update = "Mcompra";
             insert = "Ncompra";
-            selectAll = "ListarC";
+            selectAll = "ListarCompras";
 
         }
         public int Add(Compra entity)

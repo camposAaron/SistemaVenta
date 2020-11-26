@@ -42,7 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Entities\Cliente.cs" />
+    <Compile Include="Entities\Compra.cs" />
+    <Compile Include="Entities\DetalleCompra.cs" />
+    <Compile Include="Entities\DetalleVentas.cs" />
+    <Compile Include="Entities\Detalle_Devolucion.cs" />
+    <Compile Include="Entities\Devolucion.cs" />
+    <Compile Include="Entities\Producto.cs" />
+    <Compile Include="Entities\Proveedor.cs" />
+    <Compile Include="Entities\TipoProducto.cs" />
+    <Compile Include="Entities\Venta.cs" />
     <Compile Include="Models\ClienteModel.cs" />
     <Compile Include="Models\Compras\CompraModel.cs" />
     <Compile Include="Models\Compras\DetalleCompraModel.cs" />

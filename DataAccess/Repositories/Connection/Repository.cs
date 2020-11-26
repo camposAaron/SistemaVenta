@@ -11,9 +11,10 @@ namespace DataAccess.Repositories.Connection
     public abstract class Repository
     {
         private readonly string connectionString;
+       
         public Repository()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["SISTEMA_EXAMEN.Properties.Settings.DBExamen"].ToString();
+            connectionString = "Server=JOSUE-CAMPOS\\SQLEXPRESS; DataBase = SIFFS; integrated security = true";
         }
 
         protected SqlConnection GetConnection()

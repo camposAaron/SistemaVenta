@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Entities
 {
-    public class Cliente
+    public class Cliente : Persona
     {
-        public int IdCliente {get;set;}
-        public string PNombre { get; set; }
-        public string SNombre { get; set; }
-        public string PApellido { get; set; }
-        public string SApellido { get; set; }
-        public string Telefono { get; set; }
+        public int IdCliente { get; set; }
     }
 }

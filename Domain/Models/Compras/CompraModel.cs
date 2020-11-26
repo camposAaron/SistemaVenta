@@ -16,10 +16,10 @@ namespace Domain.Models
    public class CompraModel
     {
         public int IdCompra { get; set; }
-        [Required]  public DateTime fechaCompra { get; set; }
-        public double TotalCompra { get => TotalCompra; set => TotalCompra = value; }
+        public DateTime FechaCompra { get; set; }
+        public double TotalCompra { get ; set ; }
         public int IdProveedor { private get; set; }
-        public string Proveedor { get; set; }
+        
         public string TipoPago { get; set; }
 
         private List<CompraModel> lstCompras;
@@ -38,7 +38,7 @@ namespace Domain.Models
             {
                 var compraDataModel = new Compra();
                 compraDataModel.IdCompra = IdCompra;
-                compraDataModel.fechaCompra = fechaCompra;
+                compraDataModel.fechaCompra = FechaCompra;
                 compraDataModel.TotalCompra = TotalCompra;
                 compraDataModel.IdProveedor= IdProveedor;
                 compraDataModel.TipoPago = TipoPago;
@@ -89,13 +89,12 @@ namespace Domain.Models
                 lstCompras.Add(new CompraModel
                 {
                     IdCompra = Convert.ToInt32(item[0]),
-                    fechaCompra = Convert.ToDateTime(item[1]),
+                    FechaCompra = Convert.ToDateTime(item[1]),
                     TotalCompra = Convert.ToDouble(item[2]),
                     IdProveedor = Convert.ToInt32(item[3]),
-                    Proveedor = item[4].ToString(),
-                    TipoPago = item[5].ToString()
+                    TipoPago = item[4].ToString()
 
-                });
+                }) ;
 
 
             }
@@ -103,6 +102,9 @@ namespace Domain.Models
             return lstCompras;
         }
 
-
+        public CompraModel FindLast()
+        {
+            return GetAll().Last();
+        }
     }
 }

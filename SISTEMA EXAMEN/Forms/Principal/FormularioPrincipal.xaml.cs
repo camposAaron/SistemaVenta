@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SISTEMA_EXAMEN.Forms.Venta;
+using SISTEMA_EXAMEN.Forms.Compras;
+
 namespace SISTEMA_EXAMEN.Forms.Principal
 {
     /// <summary>
@@ -22,6 +24,7 @@ namespace SISTEMA_EXAMEN.Forms.Principal
         private Producto.frmProducto frmProducto;
         private frmVenta frmVenta;
         private frmverVentas frmver;
+        frmCompras frmC;
 
         public FormularioPrincipal()
         {
@@ -82,6 +85,17 @@ namespace SISTEMA_EXAMEN.Forms.Principal
 
         private void compras_Click(object sender, RoutedEventArgs e)
         {
+
+            if(frmC == null)
+            {
+                frmC = new frmCompras();
+                Container.Children.Add(frmC);
+            }
+            else
+            {
+                Container.Children.Clear();
+                Container.Children.Add(frmC) ;
+            }
 
         }
 
