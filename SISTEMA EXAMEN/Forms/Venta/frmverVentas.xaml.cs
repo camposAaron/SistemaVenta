@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Domain.Models.Ventas;
+
 
 namespace SISTEMA_EXAMEN.Forms.Venta
 {
@@ -21,25 +21,25 @@ namespace SISTEMA_EXAMEN.Forms.Venta
     /// </summary>
     public partial class frmverVentas : UserControl
     {
-        private VentaModel venta = new VentaModel();
-        private DetalleVentaModel detalleVenta = new DetalleVentaModel();
+        //private VentaModel venta = new VentaModel();
+        //private DetalleVentaModel detalleVenta = new DetalleVentaModel();
 
         public frmverVentas()
         {
             InitializeComponent();
-            LoadDataLst();
+            //LoadDataLst();
         }
 
         public void LoadDataLst()
         {
-            lstVentas.ItemsSource = venta.GetAll();
-            lstVentas.SelectedValuePath = "IdVenta";
+            //lstVentas.ItemsSource = venta.GetAll();
+            //lstVentas.SelectedValuePath = "IdVenta";
         }
 
         private void lstVentas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var idVenta =  (int) lstVentas.SelectedValue;
-            lstDetalleVenta.ItemsSource = detalleVenta.findById(idVenta);
+            //var idVenta =  (int) lstVentas.SelectedValue;
+            //lstDetalleVenta.ItemsSource = detalleVenta.findById(idVenta);
         }
     }
 }

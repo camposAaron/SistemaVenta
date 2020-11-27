@@ -25,7 +25,8 @@ namespace DataAccess.Repositories
             insert = "Producto_INS";
             update = "Producto_UPD";
             selectAll = "Producto_S";
-            delete = "Producto_Buscar";
+            delete = "Producto_DEL";
+            find = "Producto_Buscar";
 
         }
 
@@ -101,7 +102,7 @@ namespace DataAccess.Repositories
         {
 
             parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("Codigo", code));
+            parameters.Add(new SqlParameter("@Codigo", code));
 
             return ExecuteReader(find, CommandType.StoredProcedure);
         }

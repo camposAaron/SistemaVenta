@@ -37,7 +37,7 @@ namespace DataAccess.Repositories
             parameters.Add(new SqlParameter("@Dir", entity.Direccion));
             parameters.Add(new SqlParameter("@website", entity.WebSite));
             parameters.Add(new SqlParameter("@CorreoP", entity.Correo));
-            parameters.Add(new SqlParameter("@cuenta_banco", entity.CuentaBancaria));
+          
             parameters.Add(new SqlParameter("@tel", entity.Telefono));
 
             return ExecuteNonQuery(insert, CommandType.StoredProcedure);
@@ -51,7 +51,7 @@ namespace DataAccess.Repositories
             parameters.Add(new SqlParameter("@NombreProv", entity.Nombre));
             parameters.Add(new SqlParameter("@direcci", entity.Direccion));
             parameters.Add(new SqlParameter("@correop", entity.Correo));
-            parameters.Add(new SqlParameter("@correop", entity.CuentaBancaria));
+         
             parameters.Add(new SqlParameter("@tel", entity.Telefono));
 
 
@@ -74,5 +74,7 @@ namespace DataAccess.Repositories
         {
             return ExecuteNonQuery(delete, CommandType.StoredProcedure);
         }
+
+      
     }
 }

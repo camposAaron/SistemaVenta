@@ -64,6 +64,7 @@
     <Compile Include="Repositories\CompraRepository.cs" />
     <Compile Include="Repositories\Connection\MasterRepository.cs" />
     <Compile Include="Repositories\Connection\Repository.cs" />
+    <Compile Include="Repositories\Connection\UserDao.cs" />
     <Compile Include="Repositories\DetalleCompraRepository.cs" />
     <Compile Include="Repositories\DetalleDevolucionRepository.cs" />
     <Compile Include="Repositories\DetalleVentaRepository.cs" />
@@ -73,8 +74,14 @@
     <Compile Include="Repositories\ProveedorRepository.cs" />
     <Compile Include="Repositories\RubroProductoRepository.cs" />
     <Compile Include="Repositories\TipoProductoRepository.cs" />
+    <Compile Include="Repositories\UsuarioRepository.cs" />
     <Compile Include="Repositories\VentaRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{a5ddb346-7ea5-4256-8dc4-94041bc8912a}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

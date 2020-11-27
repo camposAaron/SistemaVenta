@@ -20,31 +20,31 @@ namespace SISTEMA_EXAMEN.Forms.TipoProducto
     /// </summary>
     public partial class frmTipoProducto : Window
     {
-        ComboBox cmb;
-        TipoProductoModel tipo;
+    //    ComboBox cmb;
+    //    TipoProductoModel tipo;
 
         public frmTipoProducto(ComboBox items)
         {
             InitializeComponent();
-            cmb = items;
+            //cmb = items;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            tipo = new TipoProductoModel();
-            tipo.state = Domain.ValueObjects.EntityState.Added;
-            tipo.Tipo = txtTipo.Text;
+            //tipo = new TipoProductoModel();
+            //tipo.state = Domain.ValueObjects.EntityState.Added;
+            //tipo.Tipo = txtTipo.Text;
 
-            bool valid = new Helps.DataValidation(tipo).Validate();
-            if (valid == true)
-            {
-                string result = tipo.SaveChanges();
-                System.Windows.MessageBox.Show(result);
+            //bool valid = new Helps.DataValidation(tipo).Validate();
+            //if (valid == true)
+            //{
+            //    string result = tipo.SaveChanges();
+            //    System.Windows.MessageBox.Show(result);
 
-                cmb.ItemsSource = tipo.GetAll();
-                txtTipo.Clear();
+            //    cmb.ItemsSource = tipo.GetAll();
+            //    txtTipo.Clear();
 
-            }
+            //}
         }
     }
 }

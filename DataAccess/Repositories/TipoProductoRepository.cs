@@ -18,13 +18,15 @@ namespace DataAccess.Repositories
         private string insert;
         private string selectAll;
         private string delete;
+        private string find;
 
         public TipoProductoRepository()
         {
             insert = "TipoProducto_INS";
             delete = "TipoProducto_DEL";
             selectAll = "TipoProducto_S";
-         
+            find = "TipoProducto_Busqueda";
+
         }
         public int Add(TipoProducto entity)
         {
@@ -41,7 +43,7 @@ namespace DataAccess.Repositories
 
         public DataTable findById(int idPK)
         {
-            throw new NotImplementedException();
+            return ExecuteReader(find, CommandType.StoredProcedure);
         }
 
         public DataTable GetAll()

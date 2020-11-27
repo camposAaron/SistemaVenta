@@ -14,7 +14,7 @@
      FontFamily="{DynamicResource MaterialDesignFont}"
      
         mc:Ignorable="d"
-        Title="FormularioPrincipal" Height="650" Width="1200" WindowStartupLocation="CenterScreen">
+        Title="FormularioPrincipal" Height="650" Width="1200" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -33,7 +33,15 @@
             </DockPanel.Resources>
             <!--Menu-->
             <Menu Grid.Row="0" VerticalAlignment="Center" DockPanel.Dock="Top">
+                
 
+                <MenuItem Header="Sistema" >
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Tools" materialDesign:ThemeAssist.Theme="Light"></materialDesign:PackIcon>
+                    </MenuItem.Icon>
+                    <MenuItem Header="Cambiar Contraseña"></MenuItem>
+                    <MenuItem  Name="btnLogOut"  Header="Cerrar Sesion" Click="btnLogOut_Click"></MenuItem>
+                </MenuItem>
          
                 <!--Ventas-->
                 <MenuItem Header="Ventas">
@@ -72,11 +80,13 @@
                 </Style>
             </StackPanel.Resources>
 
+            <TextBlock   Text="Nombre Usuario:"></TextBlock>
             <TextBlock Name="txtNombre"  Text="Nombre Usuario"></TextBlock>
             <Separator Style="{StaticResource MaterialDesignSeparator}" Background="Black" Width="10" Height="10" ></Separator>
+            <TextBlock  Text="Rol de usuario:"></TextBlock>
             <TextBlock Name="txtRole" Text="Rol de usuario"></TextBlock>
-            <Separator Style="{StaticResource MaterialDesignSeparator}" Background="Black" Width="10" Height="10" ></Separator>
-            <TextBlock Name="txtHoras" Text="Hora"></TextBlock>
+         
+            
         </StackPanel>
     </Grid>
 

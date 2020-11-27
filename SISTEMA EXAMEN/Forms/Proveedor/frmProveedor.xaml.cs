@@ -21,41 +21,41 @@ namespace SISTEMA_EXAMEN.Forms.Proveedor
     /// </summary>
     public partial class frmProveedor : Window
     {
-        private ProveedorModel prove = new ProveedorModel();
-        ComboBox cmbprove;
+        //private ProveedorModel prove = new ProveedorModel();
+        //ComboBox cmbprove;
         public frmProveedor(ComboBox cmb)
         {
             InitializeComponent();
-            cmbprove = cmb;
+            //cmbprove = cmb;
         }
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            prove.IdProveedor = txtId.Text;
-            prove.nombre = txtNombre.Text;
-            prove.telefono = txtel.Text;
-            prove.direccion = txtdir.Text;
-            prove.correo_electronico = txtcor.Text;
+            //prove.IdProveedor = txtId.Text;
+            //prove.nombre = txtNombre.Text;
+            //prove.telefono = txtel.Text;
+            //prove.direccion = txtdir.Text;
+            //prove.correo_electronico = txtcor.Text;
 
-            prove.state = Domain.ValueObjects.EntityState.Added;
+            //prove.state = Domain.ValueObjects.EntityState.Added;
            
-            bool valid = new Helps.DataValidation(prove).Validate();
-            if (valid == true)
-            {
-                string result = prove.SaveChanges();
-                System.Windows.MessageBox.Show(result);
+            //bool valid = new Helps.DataValidation(prove).Validate();
+            //if (valid == true)
+            //{
+            //    string result = prove.SaveChanges();
+            //    System.Windows.MessageBox.Show(result);
 
-                cmbprove.ItemsSource = prove.GetAll();
-                Restart();
-            }
+            //    cmbprove.ItemsSource = prove.GetAll();
+            //    Restart();
+            //}
         }
 
         private void Restart()
         {
-           txtNombre.Clear();
-            txtel.Clear();
-           txtdir.Clear();
-           txtcor.Clear();
+           //txtNombre.Clear();
+           // txtel.Clear();
+           //txtdir.Clear();
+           //txtcor.Clear();
         }
     }
 }

@@ -10,15 +10,20 @@ using System.ComponentModel.DataAnnotations;
 using Domain.ValueObjects;
 using System.Data.SqlClient;
 using System.Data;
+using Common;
 
 namespace Domain.Models
 {
    public class CompraModel
     {
         public int IdCompra { get; set; }
+        public int IdProveedor { private get; set; }
+        public string NombreProveedor { get; set; }
+        public int IdUsuario { private get; set; }
+        public string NombreUsuario { get; set; }
         public DateTime FechaCompra { get; set; }
         public double TotalCompra { get ; set ; }
-        public int IdProveedor { private get; set; }
+        
         
         public string TipoPago { get; set; }
 
@@ -38,10 +43,12 @@ namespace Domain.Models
             {
                 var compraDataModel = new Compra();
                 compraDataModel.IdCompra = IdCompra;
+                compraDataModel.IdProveedor = IdProveedor;
+                compraDataModel.IdUsuario = IdUsuario;
                 compraDataModel.fechaCompra = FechaCompra;
                 compraDataModel.TotalCompra = TotalCompra;
-                compraDataModel.IdProveedor= IdProveedor;
-                compraDataModel.TipoPago = TipoPago;
+              
+                
 
                
 
@@ -83,16 +90,20 @@ namespace Domain.Models
         {
             var Compras = genericRepository.GetAll();
             lstCompras = new List<CompraModel>();
+            ProveedorModel prove = new ProveedorModel();
 
             foreach (DataRow item in Compras.Rows)
             {
                 lstCompras.Add(new CompraModel
                 {
                     IdCompra = Convert.ToInt32(item[0]),
-                    FechaCompra = Convert.ToDateTime(item[1]),
-                    TotalCompra = Convert.ToDouble(item[2]),
-                    IdProveedor = Convert.ToInt32(item[3]),
-                    TipoPago = item[4].ToString()
+                    IdProveedor = Convert.ToInt32(item[1]),
+                    NombreProveedor = prove.BuscarPorId(IdProveedor),
+                    IdUsuario = Convert.ToInt32(item[2]),
+                    NombreUsuario = UserLoginChache.NombreUsuario,
+                    FechaCompra = Convert.ToDateTime(item[3]),
+                    TotalCompra = Convert.ToDouble(item[4]),
+              
 
                 }) ;
 

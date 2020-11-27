@@ -46,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -87,6 +88,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\Login\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\Principal\FormularioPrincipal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,6 +121,10 @@
     </Compile>
     <Compile Include="Forms\Compras\frmCompras.xaml.cs">
       <DependentUpon>frmCompras.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login\Encrypt.cs" />
+    <Compile Include="Forms\Login\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\Principal\FormularioPrincipal.xaml.cs">
       <DependentUpon>FormularioPrincipal.xaml</DependentUpon>
@@ -169,10 +178,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Forms\Login\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{a5ddb346-7ea5-4256-8dc4-94041bc8912a}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{f100ccf0-9bac-4a3f-aafb-4a85edcb59f5}</Project>
       <Name>Domain</Name>
