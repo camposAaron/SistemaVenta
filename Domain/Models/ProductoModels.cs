@@ -16,16 +16,27 @@ namespace Domain.Models
    public class ProductoModel
     {
 
-        private string codigo_producto;
-        private string nombre;
-        private string descripcion;
-        private double precio;
-        private int existencia;
-        private int idProveedor;
-        private string proveedor;
-        private int idTipoProducto;
-        private string tipo;
-        private bool estado;
+      [Required]  public string Codigo_producto { get; set; }
+        [Required] public string NombreComercial { get; set; }
+        public string Descripcion { get; set; }
+        public string UsoTerapeutico { get; set; }
+        [Required] public double Precio { get; set; }
+        [Required] public int Existencia { get; set; }
+        [Required] public int IdTipo {private get; set; }
+        public string Tipo { get; set; }
+        [Required] public int IdRubro {private get; set; }
+        public string Rubro { get; set; }
+        [Required] public int IdPresentacion {private get; set; }
+        [Required] public string Presentacion { get; set; }
+        [Required] public string Concentracion { get; set; }
+        public string Laboratorio { get; set; }
+        public bool Reseta { get; set; }
+        public bool Estado {private get; set; }
+        public DateTime FechaRegistro { get; set; }
+        public DateTime FechaElaboracion { get; set; }
+        public DateTime FechaVencimiento { get; set; }
+
+
 
         private List<ProductoModel> listProducto;
         private IProductoRepository productoRepository;
@@ -38,25 +49,7 @@ namespace Domain.Models
 
 
         //PROPIEDADES//VALIDACIONES//MODELO DE VISTA
-        [Required(ErrorMessage ="El codigo del producto es requerido")]
-        public string Codigo_producto { get => codigo_producto;  set => codigo_producto = value; }
-        [Required]
-        [StringLength(maximumLength:50,MinimumLength = 3 )]
-        public string Nombre { get => nombre;  set => nombre = value; }
-        public string Descripcion { get => descripcion;  set => descripcion = value; }
-        [Required]
-        [RegularExpression("[0-9]+")]
-        public double Precio { get => precio; set => precio = value; }
-        [Required]
-        [RegularExpression("[0-9]+")]
-        public int Existencia { get => existencia; set => existencia = value; }
-        [Required]
-        public int IdProveedor {private get => idProveedor;  set => idProveedor = value; }
-        public string Proveedor { get => proveedor;private set => proveedor =  value; }
-        [Required]
-        public int IdTipoProducto {private get => idTipoProducto;  set => idTipoProducto = value; }
-        public string Tipo { get => tipo; set => tipo = value; }
-        public bool Estado { get => estado; set => estado = value; }
+        
         
         public string SaveChanges()
         {
@@ -64,14 +57,28 @@ namespace Domain.Models
             try
             {
                 var productoDataModel = new Producto();
-                productoDataModel.codigo_producto = codigo_producto;
-                productoDataModel.nombre = nombre;
-                productoDataModel.descripcion = descripcion;
-                productoDataModel.precio = precio;
-                productoDataModel.existencia = existencia;
-                productoDataModel.IdProveedor = idProveedor;
-                productoDataModel.IdTipoProducto = idTipoProducto;
-               
+                productoDataModel.Codigo_producto = Codigo_producto;
+                productoDataModel.NombreComercial = NombreComercial;
+                productoDataModel.Descripcion = Descripcion;
+                productoDataModel.UsoTerapeutico = UsoTerapeutico;
+                productoDataModel.Precio = Precio;
+
+                productoDataModel.Existencia = Existencia;
+                productoDataModel.IdTipo = IdTipo;
+                productoDataModel.IdRubro = IdRubro;
+                productoDataModel.IdPresentacion = IdPresentacion;
+
+                productoDataModel.Concentracion = Concentracion;
+                productoDataModel.Laboratorio = Laboratorio;
+                productoDataModel.Reseta = Reseta;
+
+                productoDataModel.Estado = Estado;
+                productoDataModel.FechaRegistro = FechaRegistro;
+                productoDataModel.FechaVencimiento = FechaVencimiento;
+                productoDataModel.FechaElaboracion = FechaElaboracion;
+
+
+
 
                 switch (state)
                 {
@@ -112,21 +119,34 @@ namespace Domain.Models
         {
             var productoDataModel = productoRepository.GetAll();
              listProducto = new List<ProductoModel>();
+            TipoProductoModel tipo = new TipoProductoModel();
+            RubroModel rubro = new RubroModel();
+            PresentacionModel presenta = new PresentacionModel();
+
+
 
             foreach(DataRow item in productoDataModel.Rows)
             {
                 listProducto.Add(new ProductoModel
                 {
-                    codigo_producto = item[0].ToString(),
-                    nombre = item[1].ToString(),
-                    descripcion = item[2].ToString(),
-                    precio = Convert.ToDouble(item[3]),
-                    existencia = Convert.ToInt32(item[4]),
-                    idProveedor = Convert.ToInt32( item[5]),
-                    proveedor = item[6].ToString(),
-                    idTipoProducto = Convert.ToInt32(item[7]),
-                    tipo = item[8].ToString()
-                }); 
+                    Codigo_producto = item[0].ToString(),
+                    NombreComercial = item[1].ToString(),
+                    Descripcion = item[3].ToString(),
+                    UsoTerapeutico = item[2].ToString(),
+                    Precio = Convert.ToDouble(item[5]),
+                    Existencia = Convert.ToInt32(item[6]),
+                    IdTipo = Convert.ToInt32(item[7]),
+                    Tipo = tipo.BuscarPorId(IdTipo),
+                    IdRubro = Convert.ToInt32(item[8]),
+                    Rubro = rubro.BuscarPorId(IdRubro),
+                    IdPresentacion = Convert.ToInt32(item[9]),
+                    Presentacion = presenta.BuscarPorId(IdPresentacion),
+                    Concentracion = item[10].ToString(),
+                    Laboratorio = item[11].ToString(),
+                    Reseta = Convert.ToBoolean(item[12]),
+                    Estado = Convert.ToBoolean(item[12])
+                }) ;
+                
                
               
             }
@@ -136,9 +156,18 @@ namespace Domain.Models
 
         public List<ProductoModel> findByCondition(string condicion)
         {
-            return GetAll().FindAll(e => e.Codigo_producto.IndexOf(condicion, StringComparison.OrdinalIgnoreCase) >= 0 || e.nombre.IndexOf(condicion, StringComparison.OrdinalIgnoreCase) >= 0);
+            return GetAll().FindAll(e => e.Codigo_producto.IndexOf(condicion, StringComparison.OrdinalIgnoreCase) >= 0 || 
+            e.NombreComercial.IndexOf(condicion, StringComparison.OrdinalIgnoreCase) >= 0 || e.UsoTerapeutico.IndexOf(condicion,StringComparison.OrdinalIgnoreCase) >=0
+            );
         }
 
+        public ProductoModel findByCode(string code)
+        {
+            ProductoModel c = new ProductoModel();
+            List<ProductoModel> lst = GetAll().FindAll(e => e.Codigo_producto == code);
+            c = lst.First();
+            return c;
+        }
      
     }
 }

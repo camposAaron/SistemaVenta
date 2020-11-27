@@ -15,13 +15,15 @@ namespace Domain.Models
 {
    public class ProveedorModel
     {
-        [Required] public string IdProveedor { get; set; }
-        [Required] public string nombre { get; set; }
 
-        [Required] public string telefono { get; set; }
-        [Required] public string direccion { get; set; }
-
-        [Required] public string correo_electronico { get; set; }
+        public int IdProveedor { get; set; }
+        [Required] public string Nombre { get; set; }
+        [Required] public string Direccion { get; set; }
+        public bool Estado { get; set; }
+        public string WebSite { get; set; }
+        public string Correo { get; set; }
+       
+        [Required] public string Telefono { get; set; }
 
         private IGenericRepository<Proveedor> provedorRepository;
         private List<ProveedorModel> listProveedores;
@@ -39,25 +41,27 @@ namespace Domain.Models
             {
                 var proveedorDataModel = new Proveedor();
                 proveedorDataModel.IdProveedor = IdProveedor;
-                proveedorDataModel.nombre = nombre;
-                proveedorDataModel.telefono = telefono;
-                proveedorDataModel.direccion = direccion;
-                proveedorDataModel.correo_electronico = correo_electronico;
+                proveedorDataModel.Nombre = Nombre;
+              
+                proveedorDataModel.Direccion = Direccion;
+                proveedorDataModel.WebSite = WebSite;
+                proveedorDataModel.Telefono = Telefono;
+                proveedorDataModel.Correo = Correo;
 
 
                 switch (state)
                 {
                     case EntityState.Added:
                         provedorRepository.Add(proveedorDataModel);
-                        message = "Producto registrado correctamente";
+                        message = "Proveedor registrado correctamente";
                         break;
                     case EntityState.deleted:
-                        //provedorRepository.Remove(IdProveedor);
-                        //message = "Producto Dado de baja exitosamente";
+                        provedorRepository.Remove(IdProveedor);
+                        message = "Proveedor Dado de baja exitosamente";
                         break;
                     case EntityState.Modified:
                         provedorRepository.Edit(proveedorDataModel);
-                        message = "Producto Modificado Exitosamente";
+                        message = "Proveedor Modificado Exitosamente";
                         break;
                 }
 
@@ -85,18 +89,33 @@ namespace Domain.Models
             {
                 listProveedores.Add(new ProveedorModel
                 {
-                    IdProveedor = item[0].ToString(),
-                    nombre = item[1].ToString(),
-                    telefono = item[2].ToString(),
-                    direccion = item[3].ToString(),
-                    correo_electronico = item[4].ToString()
-               
-                });
+                    IdProveedor = Convert.ToInt32(item[0]),
+                    Nombre = item[1].ToString(),
+                    Direccion = item[2].ToString(),
+                    Estado = Convert.ToBoolean(item[3]),
+                    WebSite = item[4].ToString(),
+                    Correo = item[5].ToString(),
+                    Telefono = item[7].ToString()
+
+
+                }) ;
 
 
             }
 
             return listProveedores;
+        }
+
+        public string BuscarPorId(int idProveedor)
+        {
+            string nombre = null;
+            var Tipo = provedorRepository.findById(idProveedor);
+            foreach (DataRow item in Tipo.Rows)
+            {
+                nombre = item[0].ToString();
+            }
+
+            return nombre;
         }
     }
 }

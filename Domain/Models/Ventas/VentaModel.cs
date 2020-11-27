@@ -10,14 +10,20 @@ using System.ComponentModel.DataAnnotations;
 using Domain.ValueObjects;
 using System.Data.SqlClient;
 using System.Data;
+using Common;
 
 namespace Domain.Models.Ventas
 {
   public  class VentaModel
     {
         public int IdVenta { get; set; }
-      [Required]  public DateTime FechaVenta { get; set; }
-       [Required] public int IdCliente { get; set; }
+        [Required] public int IdCliente { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        [Required] public int IdUsuario { get; set; }
+        public string Vendedor { get; set; }
+
+        [Required]  public DateTime FechaVenta { get; set; }
         public double TotalVendido { get; set; }
 
         private List<VentaModel> lstVentas;
@@ -36,8 +42,9 @@ namespace Domain.Models.Ventas
             {
                 var ventaDataModel = new Venta();
                 ventaDataModel.IdVenta = IdVenta;
-                ventaDataModel.FechaVenta = FechaVenta;
                 ventaDataModel.IdCliente = IdCliente;
+                ventaDataModel.IdUsuario = IdUsuario;
+                ventaDataModel.FechaVenta = FechaVenta; 
                 ventaDataModel.TotalVendido = TotalVendido;
          
 
@@ -82,17 +89,26 @@ namespace Domain.Models.Ventas
         {
             var detVentas = genericRepository.GetAll();
             lstVentas = new List<VentaModel>();
+            ClienteModel client = new ClienteModel();
+            
+
 
             foreach (DataRow item in detVentas.Rows)
             {
+
+                client = client.findByCondition(Convert.ToInt32(item[2]));
+
                 lstVentas.Add(new VentaModel
                 {
                     IdVenta = Convert.ToInt32(item[0]),
-                    FechaVenta = Convert.ToDateTime(item[1]),
-                    IdCliente =Convert.ToInt32( item[2].ToString()),
+                    IdCliente = Convert.ToInt32(item[1].ToString()),
+                    Nombre = client.PrimerNombre + " " +client.SegundoNombre,
+                    Apellido = client.PrimerApellido + " "+client.SegundoApellido,
+                    IdUsuario = UserLoginChache.IdUsuario,
+                    Vendedor = UserLoginChache.NombreUsuario,
+                    FechaVenta = Convert.ToDateTime(item[2]),
                     TotalVendido = Convert.ToDouble(item[3]),
                  
-
                 });
 
 

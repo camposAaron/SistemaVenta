@@ -9,6 +9,6 @@ namespace DataAccess.Entities
    public class PresentacionProducto
     {
         public int IdPresentacion { get; set; }
-        public string Presentacion { get;set }
+        public string Presentacion { get; set; }
     }
 }

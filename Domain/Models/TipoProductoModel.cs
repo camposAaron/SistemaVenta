@@ -46,6 +46,9 @@ namespace Domain.Models
                         TypeProductRepository.Remove(IdTipo);
                         message = "Producto Dado de baja exitosamente";
                         break;
+                    case EntityState.finded:
+                        TypeProductRepository.findById(IdTipo);
+                        break;
                     case EntityState.Modified:
                         TypeProductRepository.Edit(TipoProductoModel);
                         message = "Producto Modificado Exitosamente";
@@ -81,6 +84,18 @@ namespace Domain.Models
             }
 
             return listTipos;
+        }
+
+        public string  BuscarPorId(int idTipo)
+        {
+            string nombre = null;
+            var Tipo = TypeProductRepository.findById(idTipo);
+            foreach(DataRow item in Tipo.Rows)
+            {
+                nombre = item[0].ToString();
+            }
+
+            return nombre;
         }
 
 

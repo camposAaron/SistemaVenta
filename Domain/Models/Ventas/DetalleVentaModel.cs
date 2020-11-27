@@ -18,6 +18,7 @@ namespace Domain.Models.Ventas
         public int IdDetalleVenta { get; set; }
         [Required]public int IdVenta { get; set; }
         [Required]public string CodigoProducto { get; set; }
+        public string NombreProducto { get; set; }
         [Required]public int Cantidad { get; set; }
         public double Subtotal { get; set; }
         public string Accion { private get; set; }
@@ -42,7 +43,6 @@ namespace Domain.Models.Ventas
                 detVentaDataModel.IdVenta = IdVenta;
                 detVentaDataModel.CodigoProducto = CodigoProducto;
                 detVentaDataModel.Cantidad = Cantidad;
-          
                 detVentaDataModel.Subtotal = Subtotal;
                 detVentaDataModel.Accion = Accion;
 
@@ -87,14 +87,19 @@ namespace Domain.Models.Ventas
         {
             var detVentas = genericRepository.GetAll();
             lstDetV = new List<DetalleVentaModel>();
+            ProductoModel pm = new ProductoModel();
+
 
             foreach (DataRow item in detVentas.Rows)
             {
+                pm = pm.findByCode(item[2].ToString());
+                
                 lstDetV.Add(new DetalleVentaModel
                 {
                     IdDetalleVenta = Convert.ToInt32(item[0]),
                     IdVenta = Convert.ToInt32(item[1]),
                     CodigoProducto = item[2].ToString(),
+                    NombreProducto = pm.NombreComercial,
                     Cantidad = Convert.ToInt32(item[3]),
                     Subtotal = Convert.ToDouble(item[4]),
 

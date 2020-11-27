@@ -10,7 +10,8 @@ namespace Domain.ValueObjects
     {
         Added,
         Modified,
-        deleted
+        deleted,
+        finded
 
     }
 }

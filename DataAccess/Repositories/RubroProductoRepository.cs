@@ -17,12 +17,15 @@ namespace DataAccess.Repositories
         private string insert;
         private string delete;
         private string selectAll;
+        private string find;
+
 
         public RubroProductoRepository()
         {
             insert = "Rubro_INS";
             delete = "Rubro_DEL";
             selectAll = "Rubro_S";
+            find = "Rubro_Busqueda";
 
         }
 
@@ -40,7 +43,7 @@ namespace DataAccess.Repositories
 
         public DataTable findById(int idPK)
         {
-            throw new NotImplementedException();
+            return ExecuteReader(find, CommandType.StoredProcedure);
         }
 
         public DataTable GetAll()

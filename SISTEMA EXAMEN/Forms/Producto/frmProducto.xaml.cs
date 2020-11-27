@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Domain.Models;
+
 using Xceed.Wpf.Toolkit;
 using SISTEMA_EXAMEN.Forms.TipoProducto;
 using SISTEMA_EXAMEN.Forms.Proveedor;
@@ -26,50 +26,50 @@ namespace SISTEMA_EXAMEN.Forms.Producto
     /// </summary>
     public partial class frmProducto : UserControl
     {
-        ProductoModel producto = new ProductoModel();
-        TipoProductoModel tipoProducto = new TipoProductoModel();
-        ProveedorModel proveedor = new ProveedorModel();
+        //ProductoModel producto = new ProductoModel();
+        //TipoProductoModel tipoProducto = new TipoProductoModel();
+        //ProveedorModel proveedor = new ProveedorModel();
 
         public frmProducto()
         {
             InitializeComponent();
-            gridFormulario.IsEnabled = false;
-            RefreshData();
-            loadComboBoxes();
+            //gridFormulario.IsEnabled = false;
+            //RefreshData();
+            //loadComboBoxes();
         }
 
         public void RefreshData()
         {
-            try
-            {
-                GridProductos.ItemsSource = producto.GetAll();
-                GridProductos.SelectedValuePath = "codigo_producto";
+            //try
+            //{
+            //    GridProductos.ItemsSource = producto.GetAll();
+            //    GridProductos.SelectedValuePath = "codigo_producto";
         
 
-            }catch(Exception ex)
-            {
-                System.Windows.MessageBox.Show(ex.Message);
-            }
+            //}catch(Exception ex)
+            //{
+            //    System.Windows.MessageBox.Show(ex.Message);
+            //}
         }
 
         private void SpinExistencia_Spin(object sender, Xceed.Wpf.Toolkit.SpinEventArgs e)
         {
        
-                ButtonSpinner spinner = (ButtonSpinner)sender;
+                //ButtonSpinner spinner = (ButtonSpinner)sender;
 
-                string currentSpinValue = Convert.ToString(spinner.Content);
+                //string currentSpinValue = Convert.ToString(spinner.Content);
 
-                int currentValue = String.IsNullOrEmpty(currentSpinValue) ? 0 : Convert.ToInt32(currentSpinValue);
+                //int currentValue = String.IsNullOrEmpty(currentSpinValue) ? 0 : Convert.ToInt32(currentSpinValue);
 
-                if (e.Direction == SpinDirection.Increase)
+                //if (e.Direction == SpinDirection.Increase)
 
-                    currentValue++;
+                //    currentValue++;
 
-                else
+                //else
 
-                    currentValue--;
+                //    currentValue--;
 
-                spinner.Content = currentValue.ToString();
+                //spinner.Content = currentValue.ToString();
                 
 
             
@@ -77,26 +77,26 @@ namespace SISTEMA_EXAMEN.Forms.Producto
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (GridProductos.SelectedCells.Count > 0)
-            {
-                ProductoModel Paux = new ProductoModel();
-                Paux = (ProductoModel)GridProductos.SelectedItem;
+            //if (GridProductos.SelectedCells.Count > 0)
+            //{
+            //    ProductoModel Paux = new ProductoModel();
+            //    Paux = (ProductoModel)GridProductos.SelectedItem;
                 
-                    producto.state = Domain.ValueObjects.EntityState.deleted;
+            //        producto.state = Domain.ValueObjects.EntityState.deleted;
 
-                    producto.Codigo_producto = Paux.Codigo_producto;
+            //        producto.Codigo_producto = Paux.Codigo_producto;
                    
               
-                    string result = producto.SaveChanges();
-                    System.Windows.MessageBox.Show(result);
-                    RefreshData();
+            //        string result = producto.SaveChanges();
+            //        System.Windows.MessageBox.Show(result);
+            //        RefreshData();
                    
                   
                 
  
-            }
-            else
-                System.Windows.MessageBox.Show("Selecciona una fila");
+            //}
+            //else
+            //    System.Windows.MessageBox.Show("Selecciona una fila");
            
 
         }
@@ -104,22 +104,22 @@ namespace SISTEMA_EXAMEN.Forms.Producto
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
 
-            producto.Codigo_producto = txtCodigo.Text;
-            producto.Nombre = txtNombre.Text;
-            producto.Descripcion = txtDescripcion.Text;
-            producto.Precio = Convert.ToDouble(txtPrecio.Text);
-            producto.Existencia = Convert.ToInt32(SpinExistencia.Content);
-            producto.IdProveedor = Convert.ToInt32(cmbProveedor.SelectedValue);
-            producto.IdTipoProducto = Convert.ToInt32(cmbTipo.SelectedValue);
+            //producto.Codigo_producto = txtCodigo.Text;
+            //producto.Nombre = txtNombre.Text;
+            //producto.Descripcion = txtDescripcion.Text;
+            //producto.Precio = Convert.ToDouble(txtPrecio.Text);
+            //producto.Existencia = Convert.ToInt32(SpinExistencia.Content);
+            //producto.IdProveedor = Convert.ToInt32(cmbProveedor.SelectedValue);
+            //producto.IdTipoProducto = Convert.ToInt32(cmbTipo.SelectedValue);
 
-            bool valid = new Helps.DataValidation(producto).Validate();
-            if(valid == true)
-            {
-                string result = producto.SaveChanges();
-                System.Windows.MessageBox.Show(result);
-                RefreshData();
-                Restart();
-            }
+            //bool valid = new Helps.DataValidation(producto).Validate();
+            //if(valid == true)
+            //{
+            //    string result = producto.SaveChanges();
+            //    System.Windows.MessageBox.Show(result);
+            //    RefreshData();
+            //    Restart();
+            //}
         }
 
         public void Restart()
@@ -136,13 +136,13 @@ namespace SISTEMA_EXAMEN.Forms.Producto
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            btnGuardar.Content = "Comprar";
-            btnAddProveedor.IsEnabled = true;
-            restart2();
-            producto.state = Domain.ValueObjects.EntityState.Added;
-            txtCodigo.IsEnabled = true;
-            gridFormulario.IsEnabled = true;
-            loadComboBoxes(); 
+            //btnGuardar.Content = "Comprar";
+            //btnAddProveedor.IsEnabled = true;
+            //restart2();
+            //producto.state = Domain.ValueObjects.EntityState.Added;
+            //txtCodigo.IsEnabled = true;
+            //gridFormulario.IsEnabled = true;
+            //loadComboBoxes(); 
 
         }
 
@@ -159,53 +159,53 @@ namespace SISTEMA_EXAMEN.Forms.Producto
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-            btnGuardar.Content = "Guardar Cambios";
-            btnAddProveedor.IsEnabled = true;
-            cmbProveedor.IsEnabled = true;
+            //btnGuardar.Content = "Guardar Cambios";
+            //btnAddProveedor.IsEnabled = true;
+            //cmbProveedor.IsEnabled = true;
 
-            if(GridProductos.SelectedCells.Count > 0)
-            {
-                ProductoModel producto2 = new ProductoModel();
-                gridFormulario.IsEnabled = true;
+            //if(GridProductos.SelectedCells.Count > 0)
+            //{
+            //    ProductoModel producto2 = new ProductoModel();
+            //    gridFormulario.IsEnabled = true;
 
-                producto.state = Domain.ValueObjects.EntityState.Modified;
-                producto2 =  (ProductoModel)GridProductos.SelectedItem;
-                txtCodigo.Text = producto2.Codigo_producto;
-                txtNombre.Text = producto2.Nombre;
-                txtDescripcion.Text = producto2.Descripcion;
-                txtDescripcion.IsEnabled = false;
+            //    producto.state = Domain.ValueObjects.EntityState.Modified;
+            //    producto2 =  (ProductoModel)GridProductos.SelectedItem;
+            //    txtCodigo.Text = producto2.Codigo_producto;
+            //    txtNombre.Text = producto2.Nombre;
+            //    txtDescripcion.Text = producto2.Descripcion;
+            //    txtDescripcion.IsEnabled = false;
 
-                txtPrecio.Text =Convert.ToString(producto2.Precio);
-                SpinExistencia.Content = producto2.Existencia;
-                SpinExistencia.IsEnabled = false;
-                loadComboBoxes();
-                cmbTipo.Text = producto2.Tipo;
-                cmbProveedor.Text = producto2.Proveedor;
-                cmbProveedor.IsEnabled = false;
+            //    txtPrecio.Text =Convert.ToString(producto2.Precio);
+            //    SpinExistencia.Content = producto2.Existencia;
+            //    SpinExistencia.IsEnabled = false;
+            //    loadComboBoxes();
+            //    cmbTipo.Text = producto2.Tipo;
+            //    cmbProveedor.Text = producto2.Proveedor;
+            //    cmbProveedor.IsEnabled = false;
               
-            }
-            else
-            {
-                System.Windows.MessageBox.Show("Debes Seleccionar un producto para editar");
-            }
+            //}
+            //else
+            //{
+            //    System.Windows.MessageBox.Show("Debes Seleccionar un producto para editar");
+            //}
         }
 
         private void txtBuscador_TextChanged(object sender, TextChangedEventArgs e)
         {
-            GridProductos.ItemsSource =   producto.findByCondition(txtBuscador.Text);
+            //GridProductos.ItemsSource =   producto.findByCondition(txtBuscador.Text);
         }
 
        private void loadComboBoxes()
         {
-            cmbTipo.DisplayMemberPath = "Tipo";
-            cmbTipo.SelectedValuePath = "IdTipo";
-            cmbTipo.ItemsSource = tipoProducto.GetAll().ToList();
+            //cmbTipo.DisplayMemberPath = "Tipo";
+            //cmbTipo.SelectedValuePath = "IdTipo";
+            //cmbTipo.ItemsSource = tipoProducto.GetAll().ToList();
 
          
            
-            cmbProveedor.ItemsSource = proveedor.GetAll().ToList();
-               cmbProveedor.DisplayMemberPath = "nombre";
-            cmbProveedor.SelectedValuePath = "IdProveedor";
+            //cmbProveedor.ItemsSource = proveedor.GetAll().ToList();
+            //   cmbProveedor.DisplayMemberPath = "nombre";
+            //cmbProveedor.SelectedValuePath = "IdProveedor";
         }
 
         private void btnAddProveedor_Click(object sender, RoutedEventArgs e)
