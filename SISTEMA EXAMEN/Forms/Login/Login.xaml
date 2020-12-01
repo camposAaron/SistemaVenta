@@ -28,9 +28,9 @@
             <Border Grid.Row="1" Margin="10" BorderThickness="1" BorderBrush="#ccc">
                 <StackPanel Orientation="Vertical">
                     <Label Content="Usuario" HorizontalAlignment="Center" FontSize="20"></Label>
-                    <TextBox x:Name="UserText" Margin="5" Width="250" Height="25" FontFamily="verdana" FontSize="14" TextAlignment="Center" Text="JOSHUAC"></TextBox>
+                    <TextBox x:Name="UserText" Margin="5" Width="250" Height="25" FontFamily="verdana" FontSize="14" TextAlignment="Center" Text="sofi2"></TextBox>
                     <Label Content="Contraseña" HorizontalAlignment="Center" FontSize="20"></Label>
-                    <PasswordBox x:Name="PassText" Margin="5" Width="250" Height="25" FontFamily="verdana" FontSize="14" HorizontalAlignment="Center" Password="12345"></PasswordBox>
+                    <PasswordBox x:Name="PassText" Margin="5" Width="250" Height="25" FontFamily="verdana" FontSize="14" HorizontalAlignment="Center" Password="180315A"></PasswordBox>
                     <Grid HorizontalAlignment="Center" Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>

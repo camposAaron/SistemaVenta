@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 using Xceed.Wpf.Toolkit;
 using SISTEMA_EXAMEN.Forms.TipoProducto;
 using SISTEMA_EXAMEN.Forms.Proveedor;
-
+using Domain.Models;
 
 namespace SISTEMA_EXAMEN.Forms.Producto
 {
@@ -26,7 +26,7 @@ namespace SISTEMA_EXAMEN.Forms.Producto
     /// </summary>
     public partial class frmProducto : UserControl
     {
-        //ProductoModel producto = new ProductoModel();
+        ProductoModel producto = new ProductoModel();
         //TipoProductoModel tipoProducto = new TipoProductoModel();
         //ProveedorModel proveedor = new ProveedorModel();
 
@@ -34,70 +34,49 @@ namespace SISTEMA_EXAMEN.Forms.Producto
         {
             InitializeComponent();
             //gridFormulario.IsEnabled = false;
-            //RefreshData();
+            RefreshData();
             //loadComboBoxes();
         }
 
         public void RefreshData()
         {
-            //try
-            //{
-            //    GridProductos.ItemsSource = producto.GetAll();
-            //    GridProductos.SelectedValuePath = "codigo_producto";
-        
+            try
+            {
+                GridProductos.ItemsSource = producto.GetAll();
+                GridProductos.SelectedValuePath = "Codigo_producto";
 
-            //}catch(Exception ex)
-            //{
-            //    System.Windows.MessageBox.Show(ex.Message);
-            //}
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
         }
 
-        private void SpinExistencia_Spin(object sender, Xceed.Wpf.Toolkit.SpinEventArgs e)
-        {
-       
-                //ButtonSpinner spinner = (ButtonSpinner)sender;
-
-                //string currentSpinValue = Convert.ToString(spinner.Content);
-
-                //int currentValue = String.IsNullOrEmpty(currentSpinValue) ? 0 : Convert.ToInt32(currentSpinValue);
-
-                //if (e.Direction == SpinDirection.Increase)
-
-                //    currentValue++;
-
-                //else
-
-                //    currentValue--;
-
-                //spinner.Content = currentValue.ToString();
-                
-
-            
-        }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            //if (GridProductos.SelectedCells.Count > 0)
-            //{
-            //    ProductoModel Paux = new ProductoModel();
-            //    Paux = (ProductoModel)GridProductos.SelectedItem;
-                
-            //        producto.state = Domain.ValueObjects.EntityState.deleted;
+            if (GridProductos.SelectedCells.Count > 0)
+            {
+                ProductoModel Paux = new ProductoModel();
+                Paux = (ProductoModel)GridProductos.SelectedItem;
 
-            //        producto.Codigo_producto = Paux.Codigo_producto;
-                   
-              
-            //        string result = producto.SaveChanges();
-            //        System.Windows.MessageBox.Show(result);
-            //        RefreshData();
-                   
-                  
-                
- 
-            //}
-            //else
-            //    System.Windows.MessageBox.Show("Selecciona una fila");
-           
+                producto.state = Domain.ValueObjects.EntityState.deleted;
+
+                producto.Codigo_producto = Paux.Codigo_producto;
+
+
+                string result = producto.SaveChanges();
+                System.Windows.MessageBox.Show(result);
+                RefreshData();
+
+
+
+
+            }
+            else
+                System.Windows.MessageBox.Show("Selecciona una fila");
+
 
         }
 
@@ -124,75 +103,57 @@ namespace SISTEMA_EXAMEN.Forms.Producto
 
         public void Restart()
         {
-            gridFormulario.IsEnabled = false;
-            txtCodigo.Clear();
-            txtNombre.Clear();
-            txtDescripcion.Clear();
-            txtPrecio.Clear();
-            SpinExistencia.Content = null;
-            cmbProveedor.ItemsSource = null;
-            cmbTipo.ItemsSource = null;
+            //gridFormulario.IsEnabled = false;
+            //txtCodigo.Clear();
+            //txtNombre.Clear();
+            //txtDescripcion.Clear();
+            //txtPrecio.Clear();
+            //SpinExistencia.Content = null;
+            //cmbProveedor.ItemsSource = null;
+            //cmbTipo.ItemsSource = null;
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            //btnGuardar.Content = "Comprar";
-            //btnAddProveedor.IsEnabled = true;
-            //restart2();
-            //producto.state = Domain.ValueObjects.EntityState.Added;
-            //txtCodigo.IsEnabled = true;
-            //gridFormulario.IsEnabled = true;
-            //loadComboBoxes(); 
+            frmProducto2 frmp = new frmProducto2(GridProductos);
+            frmp.Show();
 
         }
 
         private void restart2()
         {
-            cmbProveedor.IsEnabled = true;
-            txtDescripcion.IsEnabled = true;
-            txtCodigo.Clear();
-            txtNombre.Clear();
-            txtDescripcion.Clear();
-            txtPrecio.Clear();
-            SpinExistencia.IsEnabled = true;
+            //cmbProveedor.IsEnabled = true;
+            //txtDescripcion.IsEnabled = true;
+            //txtCodigo.Clear();
+            //txtNombre.Clear();
+            //txtDescripcion.Clear();
+            //txtPrecio.Clear();
+            //SpinExistencia.IsEnabled = true;
         }
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
+
             //btnGuardar.Content = "Guardar Cambios";
             //btnAddProveedor.IsEnabled = true;
             //cmbProveedor.IsEnabled = true;
 
-            //if(GridProductos.SelectedCells.Count > 0)
-            //{
-            //    ProductoModel producto2 = new ProductoModel();
-            //    gridFormulario.IsEnabled = true;
+            if (GridProductos.SelectedCells.Count > 0)
+            {
 
-            //    producto.state = Domain.ValueObjects.EntityState.Modified;
-            //    producto2 =  (ProductoModel)GridProductos.SelectedItem;
-            //    txtCodigo.Text = producto2.Codigo_producto;
-            //    txtNombre.Text = producto2.Nombre;
-            //    txtDescripcion.Text = producto2.Descripcion;
-            //    txtDescripcion.IsEnabled = false;
+                frmProducto2 frm = new frmProducto2((ProductoModel)GridProductos.SelectedItem);
+                frm.Show();
 
-            //    txtPrecio.Text =Convert.ToString(producto2.Precio);
-            //    SpinExistencia.Content = producto2.Existencia;
-            //    SpinExistencia.IsEnabled = false;
-            //    loadComboBoxes();
-            //    cmbTipo.Text = producto2.Tipo;
-            //    cmbProveedor.Text = producto2.Proveedor;
-            //    cmbProveedor.IsEnabled = false;
-              
-            //}
-            //else
-            //{
-            //    System.Windows.MessageBox.Show("Debes Seleccionar un producto para editar");
-            //}
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Debes Seleccionar un producto para editar");
+            }
         }
 
         private void txtBuscador_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //GridProductos.ItemsSource =   producto.findByCondition(txtBuscador.Text);
+            GridProductos.ItemsSource =   producto.findByCondition(txtBuscador.Text);
         }
 
        private void loadComboBoxes()
@@ -210,14 +171,14 @@ namespace SISTEMA_EXAMEN.Forms.Producto
 
         private void btnAddProveedor_Click(object sender, RoutedEventArgs e)
         {
-            frmProveedor prove = new frmProveedor(cmbProveedor);
-            prove.Show();
+            //frmProveedor prove = new frmProveedor(cmbProveedor);
+            //prove.Show();
         }
 
         private void btnAddTipo_Click(object sender, RoutedEventArgs e)
         {
-            frmTipoProducto tipo = new frmTipoProducto(cmbTipo);
-            tipo.Show();
+            //frmTipoProducto tipo = new frmTipoProducto(cmbTipo);
+            //tipo.Show();
         }
 
         private void GridProductos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
