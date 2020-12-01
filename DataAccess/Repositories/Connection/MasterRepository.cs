@@ -45,7 +45,36 @@ namespace DataAccess.Repositories.Connection
                     command.CommandText = transactSql;
                     command.CommandType = type;
 
+                    
                     SqlDataReader reader = command.ExecuteReader();
+             
+                    using (var table = new DataTable())
+                    {
+                        table.Load(reader);
+                        reader.Dispose();
+                        return table;
+                    }
+                }
+            }
+        }
+
+
+        protected DataTable ExecuteReaderParameters(string transactSql, CommandType type)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = transactSql;
+                    command.CommandType = type;
+                    foreach (SqlParameter item in parameters)
+                    {
+                        command.Parameters.Add(item);
+                    }
+                    SqlDataReader reader = command.ExecuteReader();
+                    parameters.Clear();
                     using (var table = new DataTable())
                     {
                         table.Load(reader);

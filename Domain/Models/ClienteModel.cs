@@ -26,7 +26,7 @@ namespace Domain.Models
         public DateTime FechaNacimiento { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
-        public int IdCliente { private get; set; }
+        public int IdCliente {  get; set; }
         
 
 
@@ -103,15 +103,15 @@ namespace Domain.Models
             {
                 lstClientes.Add(new ClienteModel
                 {
-
-                    Cedula = item[0].ToString(),
-                    PrimerNombre = item[1].ToString(),
-                    SegundoNombre = item[2].ToString(),
-                    PrimerApellido = item[3].ToString(),
-                    SegundoApellido = item[4].ToString(),
-                    FechaNacimiento = Convert.ToDateTime(item[5]),
-                    Direccion = item[6].ToString(), 
-                    Telefono = item[7].ToString(),
+                   
+                    Cedula = item[1].ToString(),
+                    PrimerNombre = item[2].ToString(),
+                    SegundoNombre = item[3].ToString(),
+                    PrimerApellido = item[4].ToString(),
+                    SegundoApellido = item[5].ToString(),
+                    FechaNacimiento = Convert.ToDateTime(item[6]),
+                    Direccion = item[7].ToString(), 
+                    Telefono = item[8].ToString(),
                     IdCliente = Convert.ToInt32(item[0]),
 
 
@@ -128,8 +128,17 @@ namespace Domain.Models
         {
             ClienteModel c = new ClienteModel();
              List<ClienteModel> lst = GetAll().FindAll(e => e.IdCliente == idCliente);
-            c = lst.First();
-            return c;
+          
+            if (lst.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                c = lst.First();
+                return c;
+            }
+           
         }
 
 

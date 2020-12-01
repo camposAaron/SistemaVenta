@@ -15,7 +15,7 @@ namespace Domain.Models
 {
   public  class TipoProductoModel
     {
-        public int IdTipo {private get; set; }
+       public int IdTipo {private get; set; }
        [Required] public string Tipo { get; set; }
 
         private List<TipoProductoModel> listTipos;
@@ -70,6 +70,7 @@ namespace Domain.Models
             return message;
         }
 
+        /*Obtener todos los registros de Tipo de Producto*/
         public List<TipoProductoModel> GetAll()
         {
             var tipoModels = TypeProductRepository.GetAll();
@@ -86,13 +87,15 @@ namespace Domain.Models
             return listTipos;
         }
 
+        /*Busqueda Por Id del Tipo de producto*/
         public string  BuscarPorId(int idTipo)
         {
             string nombre = null;
             var Tipo = TypeProductRepository.findById(idTipo);
             foreach(DataRow item in Tipo.Rows)
             {
-                nombre = item[0].ToString();
+                //Segunda columna de tabla Tipo
+                nombre = item[1].ToString();
             }
 
             return nombre;

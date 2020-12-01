@@ -7,8 +7,8 @@
              xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="880" Background="#FFDFEAEE" >
-    <Grid ShowGridLines="False" Margin="10">
+             d:DesignHeight="445" d:DesignWidth="880" Background="#FFDFEAEE" >
+    <Grid  Margin="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -28,118 +28,36 @@
 
 
         <!--data grid productos-->
-        <DataGrid x:Name="GridProductos"  Grid.Row="1" Grid.Column="0" AutoGenerateColumns="True" IsReadOnly="True" MouseDoubleClick="GridProductos_MouseDoubleClick">
-
+        <DataGrid x:Name="GridProductos"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="GridProductos_MouseDoubleClick" CanUserReorderColumns="False" CanUserSortColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo_producto}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding NombreComercial}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="UsoTerapeutico" Binding="{Binding UsoTerapeutico}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Precio" Binding="{Binding Precio}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Existencia" Binding="{Binding Existencia}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Rubro" Binding="{Binding Rubro}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Presentacion" Binding="{Binding Presentacion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Concentracion" Binding="{Binding Concentracion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Laboratorio" Binding="{Binding Laboratorio}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Reseta" Binding="{Binding Reseta}"></DataGridTextColumn>
+                <DataGridTextColumn Header="FechaRegistro" Binding="{Binding FechaRegistro}"></DataGridTextColumn>
+                <DataGridTextColumn Header="FechaElaboracion" Binding="{Binding FechaElaboracion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="FechaVencimiento" Binding="{Binding FechaVencimiento}"></DataGridTextColumn>
+            </DataGrid.Columns>
         </DataGrid>
         
         
         <!--CRUD buttons-->
-        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="btnNuevo" Content="Agregar" Margin="5" Background="#FF202881" BorderBrush="#FF171C5D" Click="btnNuevo_Click"></Button>
-            <Button x:Name="btnEditar" Content="Editar" Margin="5" Background="#FF15647E" BorderBrush="#FF125064" Click="btnEditar_Click"></Button>
-            <Button x:Name="btnEliminar" Content="Eliminar" Margin="5" Width="90" Click="btnEliminar_Click" Background="#FFF13030" BorderBrush="#FFD42F2F"></Button>
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="btnNuevo" Content="Agregar"  Background="#FF202881" BorderBrush="#FF171C5D" Click="btnNuevo_Click" Margin="10,0,0,0" ></Button>
+            <Button x:Name="btnEditar" Content="Editar" Background="#FF15647E" BorderBrush="#FF125064" Click="btnEditar_Click" Margin="10,0,0,0"></Button>
+            <Button x:Name="btnEliminar" Content="Eliminar"  Width="90" Click="btnEliminar_Click" Background="#FFF13030" BorderBrush="#FFD42F2F" Margin="10,0,0,0"></Button>
 
         </StackPanel>
 
 
-        <!--form grid-->
-        <Grid x:Name="gridFormulario" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Margin="5" ShowGridLines="True" IsEnabled="True">
-            <Grid.Resources>
-                <Style x:Key="title" TargetType="Label">
-                    <Style.Setters>
-                        <Setter Property="FontFamily" Value="Tahoma"></Setter>
-                        <Setter Property="Foreground" Value="#444"></Setter>
-                        <Setter Property="FontSize" Value="16"></Setter>
-                        <Setter Property="FontWeight" Value="Medium"></Setter>
-                    </Style.Setters>
-                    <Style.Triggers x:Uid="Title">
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Foreground" Value="DarkBlue"></Setter>
-                            <Setter Property="Cursor" Value="Hand"></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-
-                <Style x:Key=".inputs" TargetType="TextBox">
-                    <Style.Setters>
-                        <Setter Property="FontWeight" Value="Medium"></Setter>
-                        <Setter Property="FontSize" Value="14"></Setter>
-                        <Setter Property="TextAlignment" Value="left"></Setter>
-                        <Setter Property="VerticalAlignment" Value="center"></Setter>
-                        <Setter Property="Height" Value="30"></Setter>
-                    </Style.Setters>
-
-
-                </Style>
-            </Grid.Resources>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition Height="1.5*"></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Background="#FFCEDDEA">
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Detalles Del Producto:" FontSize="18" FontWeight="DemiBold" Style="{StaticResource MaterialDesignHeadline2TextBlock}"/>
-            </StackPanel>
-
-
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5" VerticalAlignment="Center">
-                <Label Content="Codigo" Style="{StaticResource title}" ></Label>
-                <TextBox x:Name="txtCodigo"  Width="100" IsEnabled="False" Text="codigo aqui" Style="{StaticResource .inputs}"></TextBox>
-            </StackPanel>
-
-            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
-                <Label Content="Nombre" Style="{StaticResource title}" ></Label>
-                <TextBox x:Name="txtNombre"  Width="250" IsEnabled="True" Text="" Style="{StaticResource .inputs}"></TextBox>
-            </StackPanel>
-
-            <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
-                <Label Content="Descripcion" Style="{StaticResource title}" ></Label>
-                <TextBox x:Name="txtDescripcion"  Width="250" TextWrapping="Wrap" Height="50" VerticalScrollBarVisibility="Visible" IsEnabled="True" Text="" Style="{StaticResource .inputs}"></TextBox>
-            </StackPanel>
-
-            <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center">
-                <Label Content="Precio" Style="{StaticResource title}" ></Label>
-                <TextBox x:Name="txtPrecio"  Width="100"   IsEnabled="True"  Style="{StaticResource .inputs}"></TextBox>
-                <Label Content="Existencia" Style="{StaticResource title}" ></Label>
-                <wpfx:ButtonSpinner Name="SpinExistencia" Width="80" Height="30" Spin="SpinExistencia_Spin" />
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="5" VerticalAlignment="Center">
-                <Label Content="Proveedor" Style="{StaticResource title}" ></Label>
-                <ComboBox Name="cmbProveedor" Width="225" IsEditable="True" ></ComboBox>
-                <Button x:Name="btnAddProveedor" materialDesign:ButtonAssist.CornerRadius="999" Background="#FF88F188" Width="40" Height="40" Margin="10 0 0 0" BorderBrush="#FF93E2FF" Click="btnAddProveedor_Click">
-                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <materialDesign:PackIcon Kind="plus" VerticalAlignment="Center" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                    </TextBlock>
-                </Button>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="5" VerticalAlignment="Stretch">
-                <Label Content="Tipo Producto" Style="{StaticResource title}" ></Label>
-                <ComboBox Name="cmbTipo" Width="200" IsEditable="True"></ComboBox>
-                <Button x:Name="btnAddTipo" materialDesign:ButtonAssist.CornerRadius="999" Background="#FF88F188" Width="40" Height="40" Margin="10 0 0 0" BorderBrush="#FF93E2FF" Click="btnAddTipo_Click">
-                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <materialDesign:PackIcon Kind="plus" VerticalAlignment="Center" HorizontalAlignment="Center"></materialDesign:PackIcon>
-                    </TextBlock>
-                </Button>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                <Button x:Name="btnGuardar" Content="Guardar" Margin="5" Background="#FF3E4257" BorderBrush="#FF293138" Click="btnGuardar_Click"></Button>
-            </StackPanel>
-
-        </Grid>
-
-
-
     </Grid>
+    
 </UserControl>

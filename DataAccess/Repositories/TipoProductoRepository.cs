@@ -43,7 +43,9 @@ namespace DataAccess.Repositories
 
         public DataTable findById(int idPK)
         {
-            return ExecuteReader(find, CommandType.StoredProcedure);
+            parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@id", idPK));
+            return ExecuteReaderParameters(find, CommandType.StoredProcedure);
         }
 
         public DataTable GetAll()

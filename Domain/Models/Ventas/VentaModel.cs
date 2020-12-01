@@ -43,7 +43,7 @@ namespace Domain.Models.Ventas
                 var ventaDataModel = new Venta();
                 ventaDataModel.IdVenta = IdVenta;
                 ventaDataModel.IdCliente = IdCliente;
-                ventaDataModel.IdUsuario = IdUsuario;
+                ventaDataModel.IdUsuario = UserLoginChache.IdUsuario;
                 ventaDataModel.FechaVenta = FechaVenta; 
                 ventaDataModel.TotalVendido = TotalVendido;
          
@@ -96,18 +96,18 @@ namespace Domain.Models.Ventas
             foreach (DataRow item in detVentas.Rows)
             {
 
-                client = client.findByCondition(Convert.ToInt32(item[2]));
+                client = client.findByCondition(Convert.ToInt32(UserLoginChache.IdUsuario));
 
                 lstVentas.Add(new VentaModel
                 {
                     IdVenta = Convert.ToInt32(item[0]),
-                    IdCliente = Convert.ToInt32(item[1].ToString()),
-                    Nombre = client.PrimerNombre + " " +client.SegundoNombre,
-                    Apellido = client.PrimerApellido + " "+client.SegundoApellido,
+                    IdCliente = Convert.ToInt32(item[1]),
+                    Nombre = "osue",
+                    Apellido = "campos",
                     IdUsuario = UserLoginChache.IdUsuario,
                     Vendedor = UserLoginChache.NombreUsuario,
-                    FechaVenta = Convert.ToDateTime(item[2]),
-                    TotalVendido = Convert.ToDouble(item[3]),
+                    FechaVenta = Convert.ToDateTime(item[3]),
+                    TotalVendido = Convert.ToDouble(item[4]),
                  
                 });
 

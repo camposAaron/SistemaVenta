@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using SISTEMA_EXAMEN.Forms.Venta;
 using SISTEMA_EXAMEN.Forms.Compras;
 using Common;
+using SISTEMA_EXAMEN.Forms.Producto;
 
 namespace SISTEMA_EXAMEN.Forms.Principal
 {
@@ -22,10 +23,10 @@ namespace SISTEMA_EXAMEN.Forms.Principal
     /// </summary>
     public partial class FormularioPrincipal : Window
     {
-        //private Producto.frmProducto frmProducto;
-        //private frmVenta frmVenta;
-        //private frmverVentas frmver;
-        //frmCompras frmC;
+        private Producto.frmProducto frmProducto;
+        private frmVenta frmVenta;
+        private frmverVentas frmver;
+        frmCompras frmC;
 
         public FormularioPrincipal()
         {
@@ -35,16 +36,16 @@ namespace SISTEMA_EXAMEN.Forms.Principal
 
         private void MenuItemProducto_Click(object sender, RoutedEventArgs e)
         {
-            //if (frmProducto == null)
-            //{
-            //    frmProducto = new Producto.frmProducto();
-            //    Container.Children.Add(frmProducto);
-            //}
-            //else
-            //{
-            //    Container.Children.Clear();
-            //    Container.Children.Add(frmProducto);
-            //}
+            if (frmProducto == null)
+            {
+                frmProducto = new Producto.frmProducto();
+                Container.Children.Add(frmProducto);
+            }
+            else
+            {
+                Container.Children.Clear();
+                Container.Children.Add(frmProducto);
+            }
 
 
         }
@@ -52,34 +53,34 @@ namespace SISTEMA_EXAMEN.Forms.Principal
         private void MenuItemNuevaVenta_Click(object sender, RoutedEventArgs e)
         {
 
-            //if (frmVenta == null)
-            //{
-            //    frmVenta = new frmVenta();
-            //    Container.Children.Add(frmVenta);
-            //}
-            //else
-            //{
-            //    Container.Children.Clear();
-            //    Container.Children.Add(frmVenta);
-            //}
+            if (frmVenta == null)
+            {
+                frmVenta = new frmVenta();
+                Container.Children.Add(frmVenta);
+            }
+            else
+            {
+                Container.Children.Clear();
+                Container.Children.Add(frmVenta);
+            }
 
-         
+
         }
 
         private void MenuItemVerVenta_Click(object sender, RoutedEventArgs e)
         {
 
-            //if (frmver == null)
-            //{
-            //    frmver = new frmverVentas();
-            //    Container.Children.Add(frmver);
-            //}
-            //else
-            //{
-            //    frmver = new frmverVentas();
-            //    Container.Children.Clear();
-            //    Container.Children.Add(frmver);
-            //}
+            if (frmver == null)
+            {
+                frmver = new frmverVentas();
+                Container.Children.Add(frmver);
+            }
+            else
+            {
+                frmver = new frmverVentas();
+                Container.Children.Clear();
+                Container.Children.Add(frmver);
+            }
 
 
         }
@@ -88,16 +89,16 @@ namespace SISTEMA_EXAMEN.Forms.Principal
         private void compras_Click(object sender, RoutedEventArgs e)
         {
 
-            //if(frmC == null)
-            //{
-            //    frmC = new frmCompras();
-            //    Container.Children.Add(frmC);
-            //}
-            //else
-            //{
-            //    Container.Children.Clear();
-            //    Container.Children.Add(frmC) ;
-            //}
+            if (frmC == null)
+            {
+                frmC = new frmCompras();
+                Container.Children.Add(frmC);
+            }
+            else
+            {
+                Container.Children.Clear();
+                Container.Children.Add(frmC);
+            }
 
         }
 

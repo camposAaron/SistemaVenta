@@ -33,7 +33,7 @@
         <DataGrid x:Name="datagridProductos" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="False" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo_producto}" IsReadOnly="true"></DataGridTextColumn>
-                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" IsReadOnly="true"></DataGridTextColumn>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding NombreComercial}" IsReadOnly="true"></DataGridTextColumn>
                 <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}" IsReadOnly="true"></DataGridTextColumn>
                 <DataGridTextColumn Header="Precio" Binding="{Binding Precio}" IsReadOnly="true"></DataGridTextColumn>
                 <DataGridTextColumn Header="Existencia" Binding="{Binding Existencia}" IsReadOnly="true"></DataGridTextColumn>
