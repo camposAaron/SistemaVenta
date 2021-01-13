@@ -54,7 +54,6 @@
     <Compile Include="Models\Ventas\DetalleVentaModel.cs" />
     <Compile Include="Models\Ventas\VentaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValueObjects\EntityState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />

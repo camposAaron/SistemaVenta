@@ -7,8 +7,8 @@
              xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="880" Background="#FFDFEAEE" >
-    <Grid ShowGridLines="False" Margin="10">
+             d:DesignHeight="445" d:DesignWidth="880" Background="#FFDFEAEE" >
+    <Grid ShowGridLines="true" Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -28,13 +28,29 @@
 
 
         <!--data grid productos-->
-        <DataGrid x:Name="GridProductos"  Grid.Row="1" Grid.Column="0" AutoGenerateColumns="True" IsReadOnly="True" MouseDoubleClick="GridProductos_MouseDoubleClick">
-
+        <DataGrid x:Name="GridProductos"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="GridProductos_MouseDoubleClick" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo_producto}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding NombreComercial}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="UsoTerapeutico" Binding="{Binding UsoTerapeutico}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Precio" Binding="{Binding Precio}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Existencia" Binding="{Binding Existencia}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Rubro" Binding="{Binding Rubro}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Presentacion" Binding="{Binding Presentacion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Concentracion" Binding="{Binding Concentracion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Laboratorio" Binding="{Binding Laboratorio}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Reseta" Binding="{Binding Reseta}"></DataGridTextColumn>
+                <DataGridTextColumn Header="FechaRegistro" Binding="{Binding FechaRegistro}"></DataGridTextColumn>
+                <DataGridTextColumn Header="FechaElaboracion" Binding="{Binding FechaElaboracion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="FechaVencimiento" Binding="{Binding FechaVencimiento}"></DataGridTextColumn>
+            </DataGrid.Columns>
         </DataGrid>
         
         
         <!--CRUD buttons-->
-        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="btnNuevo" Content="Agregar" Margin="5" Background="#FF202881" BorderBrush="#FF171C5D" Click="btnNuevo_Click"></Button>
             <Button x:Name="btnEditar" Content="Editar" Margin="5" Background="#FF15647E" BorderBrush="#FF125064" Click="btnEditar_Click"></Button>
             <Button x:Name="btnEliminar" Content="Eliminar" Margin="5" Width="90" Click="btnEliminar_Click" Background="#FFF13030" BorderBrush="#FFD42F2F"></Button>
@@ -43,6 +59,7 @@
 
 
         <!--form grid-->
+        <!--
         <Grid x:Name="gridFormulario" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Margin="5" ShowGridLines="True" IsEnabled="True">
             <Grid.Resources>
                 <Style x:Key="title" TargetType="Label">
@@ -138,8 +155,9 @@
             </StackPanel>
 
         </Grid>
-
+  -->
 
 
     </Grid>
+    
 </UserControl>

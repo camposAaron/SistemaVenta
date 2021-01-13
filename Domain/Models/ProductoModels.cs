@@ -16,7 +16,7 @@ namespace Domain.Models
    public class ProductoModel
     {
 
-      [Required]  public string Codigo_producto { get; set; }
+        [Required]  public string Codigo_producto { get; set; }
         [Required] public string NombreComercial { get; set; }
         public string Descripcion { get; set; }
         public string UsoTerapeutico { get; set; }
@@ -27,7 +27,7 @@ namespace Domain.Models
         [Required] public int IdRubro {private get; set; }
         public string Rubro { get; set; }
         [Required] public int IdPresentacion {private get; set; }
-        [Required] public string Presentacion { get; set; }
+        public string Presentacion { get; set; }
         [Required] public string Concentracion { get; set; }
         public string Laboratorio { get; set; }
         public bool Reseta { get; set; }
@@ -119,31 +119,33 @@ namespace Domain.Models
         {
             var productoDataModel = productoRepository.GetAll();
              listProducto = new List<ProductoModel>();
-            TipoProductoModel tipo = new TipoProductoModel();
+            
             RubroModel rubro = new RubroModel();
             PresentacionModel presenta = new PresentacionModel();
+            TipoProductoModel tipo = new TipoProductoModel();
 
 
-
-            foreach(DataRow item in productoDataModel.Rows)
+            foreach (DataRow item in productoDataModel.Rows)
             {
+            
+
                 listProducto.Add(new ProductoModel
                 {
                     Codigo_producto = item[0].ToString(),
                     NombreComercial = item[1].ToString(),
-                    Descripcion = item[3].ToString(),
-                    UsoTerapeutico = item[2].ToString(),
-                    Precio = Convert.ToDouble(item[5]),
-                    Existencia = Convert.ToInt32(item[6]),
-                    IdTipo = Convert.ToInt32(item[7]),
-                    Tipo = tipo.BuscarPorId(IdTipo),
-                    IdRubro = Convert.ToInt32(item[8]),
-                    Rubro = rubro.BuscarPorId(IdRubro),
-                    IdPresentacion = Convert.ToInt32(item[9]),
-                    Presentacion = presenta.BuscarPorId(IdPresentacion),
-                    Concentracion = item[10].ToString(),
-                    Laboratorio = item[11].ToString(),
-                    Reseta = Convert.ToBoolean(item[12]),
+                    Descripcion = item[2].ToString(),
+                    UsoTerapeutico = item[3].ToString(),
+                    Precio = Convert.ToDouble(item[4]),
+                    Existencia = Convert.ToInt32(item[5]),
+                    IdTipo = Convert.ToInt32(item[6]),
+                    Tipo = tipo.BuscarPorId(Convert.ToInt32(item[6])),
+                    IdRubro = Convert.ToInt32(item[7]),
+                    Rubro = rubro.BuscarPorId(Convert.ToInt32(item[7])),
+                    IdPresentacion = Convert.ToInt32(item[8]),
+                    Presentacion = presenta.BuscarPorId(Convert.ToInt32(item[8])),
+                    Concentracion = item[9].ToString(),
+                    Laboratorio = item[10].ToString(),
+                    Reseta = Convert.ToBoolean(item[11]),
                     Estado = Convert.ToBoolean(item[12])
                 }) ;
                 

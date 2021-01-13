@@ -1,0 +1,128 @@
+﻿<Window x:Class="SISTEMA_EXAMEN.Forms.Producto.frmProducto2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SISTEMA_EXAMEN.Forms.Producto"
+        mc:Ignorable="d"
+        Title="frmProducto2" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+       
+        <StackPanel  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="center">
+            <TextBlock Text="Detalles Del producto:" FontSize="24" TextDecorations="underline"></TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1">
+            
+            <StackPanel  Margin="10">
+                <Label Content="CODIGO" Foreground="Black" FontWeight="Bold"></Label>
+                <TextBox Name="txtCodigo"></TextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="1" Margin="10">
+                <Label Content="Nombre" Foreground="Black" FontWeight="Bold"></Label>
+                <TextBox Name="txtNombre"></TextBox>
+            </StackPanel>
+
+                <StackPanel Grid.Column="0" Grid.Row="1" Margin="10">
+                    <Label Content="Descripcion" Foreground="Black" FontWeight="Bold"></Label>
+                    <TextBox Name="txtDesc"></TextBox>
+                </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="1" Margin="10">
+                <Label Content="UsoTerapeutico" Foreground="Black" FontWeight="Bold"></Label>
+                <TextBox Name="txtUso"></TextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="1" Margin="10">
+                <Label Content="Precio" Foreground="Black" FontWeight="Bold"></Label>
+                <TextBox Name="txtPrecio"></TextBox>
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+
+            <StackPanel  Margin="10">
+                <Label Content="Existencia" Foreground="Black" FontWeight="Bold"></Label>
+                <TextBox Name="txtCantidad"></TextBox>
+            </StackPanel>
+
+            <StackPanel Margin="10">
+                <Label Content="Tipo" Foreground="Black" FontWeight="Bold"></Label>
+                <ComboBox Name="cmbTipo"></ComboBox>
+            </StackPanel>
+
+            <StackPanel Margin="10">
+                <Label Content="Rubro" Foreground="Black" FontWeight="Bold"></Label>
+                <ComboBox Name="cmbRubro"></ComboBox>
+            </StackPanel>
+           
+            <StackPanel Margin="10">
+                <Label Content="Presentacion" Foreground="Black" FontWeight="Bold"></Label>
+                <ComboBox Name="cmbPresentacion"></ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="1" Margin="10">
+                <Label Content="Concentracion" Foreground="Black" FontWeight="Bold"></Label>
+                <TextBox Name="txtConcentracion"></TextBox>
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="1">
+
+            <StackPanel  Margin="10">
+                <Label Content="Laboratorio" Foreground="Black" FontWeight="Bold"></Label>
+                <TextBox Name="txtLaboratorio"></TextBox>
+            </StackPanel>
+
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <Label Content="Reseta" Foreground="Black" FontWeight="Bold"></Label>
+                <RadioButton x:Name="rdsi" GroupName="reseta" Content="Si"></RadioButton>
+                    <RadioButton x:Name="rdno" GroupName="reseta" Content="No"></RadioButton>
+            </StackPanel>
+
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <Label Content="Estado Producto" Foreground="Black" FontWeight="Bold"></Label>
+                <RadioButton x:Name="rdsi2" GroupName="estado" Content="Si"></RadioButton>
+                <RadioButton x:Name="rdno2" GroupName="estado" Content="No"></RadioButton>
+            </StackPanel>
+
+            <StackPanel Margin="10">
+                <Label Content="Fecha Registro:" Foreground="Black" FontWeight="Bold"></Label>
+                <DatePicker Name="dateR"></DatePicker>
+            </StackPanel>
+
+            <StackPanel Margin="10">
+                <Label Content="Fecha Elaboracion:" Foreground="Black" FontWeight="Bold"></Label>
+                <DatePicker Name="dateE"></DatePicker>
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Grid.Row="1">
+            <StackPanel>
+                <Label Content="Fecha Vencimiento:" Foreground="Black" FontWeight="Bold"></Label>
+                <DatePicker Name="dateV"></DatePicker>
+            </StackPanel>
+
+            <StackPanel Margin="50">
+                <Button x:Name="btnGuardar" Content="Guardar" Height="100" Background="Black" Click="btnGuardar_Click"></Button>
+            </StackPanel>
+
+        </StackPanel>
+
+      
+
+    </Grid>
+</Window>
